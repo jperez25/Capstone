@@ -16,3 +16,14 @@ Project Structure
     Templates
       -TBA
 
+Dependecies
+  Web
+  Security
+  Thymeleaf
+  JPA
+  MySQL
+JS Frameworks/Libreries
+  Vue?
+  Ajax
+  Jquery
+  
