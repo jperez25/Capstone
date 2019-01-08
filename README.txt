@@ -1,3 +1,8 @@
+Java 8
+Tomcat
+Maven
+Spring 2.1.1
+
 Project Structure
   Java
     App
