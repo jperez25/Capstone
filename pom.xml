@@ -8,11 +8,11 @@
 		<version>2.1.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.capstone</groupId>
-	<artifactId>capstone</artifactId>
+	<groupId>HMR_website</groupId>
+	<artifactId>Capstone</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>capstone</name>
-	<description>Project for Capstone</description>
+	<name>Capstone</name>
+	<description>Capstone project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
