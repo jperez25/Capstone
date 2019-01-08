@@ -1,5 +1,5 @@
 Project Structure
-  Java
+  Java \n
     App
       -Model
       -Controller
