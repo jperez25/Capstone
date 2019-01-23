@@ -1,5 +1,10 @@
 
-(function ($) {
+
+  function search() {
+      console.log("hi");
+  }
+
+(function($) {
     "use strict";
 
     

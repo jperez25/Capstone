@@ -3,6 +3,7 @@ package com.capstone.app.Controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.capstone.app.DAO.OfficeDAO;
+import com.capstone.app.DAO.UserDAO;
 import com.capstone.app.Utils.WebUtils;
  
 @Controller
 public class MainController {
+	@Autowired
+	OfficeDAO OfficeDAO;
 	
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
@@ -34,8 +39,10 @@ public class MainController {
     }
  
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(Model model) {
- 
+    public String loginPage(Model model) {    	 
+    	 
+    	 model.addAttribute("offices",  OfficeDAO.getAllOficces());
+    	 
         return "login";
     }
     
