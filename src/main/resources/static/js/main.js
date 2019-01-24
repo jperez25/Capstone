@@ -1,7 +1,17 @@
 
 
-  function search() {
-      console.log("hi");
+  function get_Patients(last_name) {
+      console.log(last_name);
+
+      $.ajax({
+        url: "/get_patients",
+        data: {
+          last_name: last_name
+        },
+        success: function( result ) {
+          $( "#patients" ).html( "<strong>" + result + "</strong> " );
+        }
+      });
   }
 
 (function($) {

@@ -1,0 +1,15 @@
+<table class="table" th:fragment="patients">
+    <thead>
+      <tr>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr th:each="patient: ${patients}">        
+        <td th:text="${patient.name}">Mark</td>
+        <td th:text="${patient.name}">Otto</td>
+      </tr>
+    </tbody>
+  </table>

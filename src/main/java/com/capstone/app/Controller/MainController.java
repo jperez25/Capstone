@@ -95,5 +95,11 @@ public class MainController {
  
         return "403Page";
     }
+    
+    @RequestMapping(value = "/get_patients", method = RequestMethod.GET)
+    public String showGuestList(Model model) {
+    	model.addAttribute("patients", OfficeDAO.getAllOficces() );
+        return "patients :: patients";
+    }
  
 }
