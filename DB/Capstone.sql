@@ -135,7 +135,7 @@ CREATE TABLE `eye` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `color` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +144,7 @@ CREATE TABLE `eye` (
 
 LOCK TABLES `eye` WRITE;
 /*!40000 ALTER TABLE `eye` DISABLE KEYS */;
+INSERT INTO `eye` VALUES (1,'blue');
 /*!40000 ALTER TABLE `eye` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +182,8 @@ DROP TABLE IF EXISTS `patient`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patient` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
   `weight` varchar(45) DEFAULT NULL,
   `height` varchar(45) DEFAULT NULL,
   `eye_colour` int(11) DEFAULT NULL,
@@ -192,7 +194,7 @@ CREATE TABLE `patient` (
   PRIMARY KEY (`id`),
   KEY `eye_idx` (`eye_colour`),
   CONSTRAINT `eye` FOREIGN KEY (`eye_colour`) REFERENCES `eye` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +203,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
+INSERT INTO `patient` VALUES (1,'Jovanny','Perez','170','68',1,'111224444',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,4 +362,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-12 17:40:27
+-- Dump completed on 2019-01-24 11:44:18

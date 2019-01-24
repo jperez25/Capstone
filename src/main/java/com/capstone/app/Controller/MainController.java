@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.DAO.OfficeDAO;
+import com.capstone.app.DAO.PatientDAO;
 import com.capstone.app.DAO.UserDAO;
 import com.capstone.app.Utils.WebUtils;
  
@@ -20,10 +22,14 @@ public class MainController {
 	@Autowired
 	OfficeDAO OfficeDAO;
 	
+	@Autowired
+	PatientDAO patientDAO;
+	
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
+        model.addAttribute("loggedIn",com.capstone.app.Model.User.isLoggednIn() );
         return "index";
     }
  
@@ -40,6 +46,10 @@ public class MainController {
  
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(Model model) {    	 
+    	
+    	if(com.capstone.app.Model.User.isLoggednIn()) {
+    		return "redirect:/home";
+    	}
     	 
     	 model.addAttribute("offices",  OfficeDAO.getAllOficces());
     	 
@@ -97,8 +107,10 @@ public class MainController {
     }
     
     @RequestMapping(value = "/get_patients", method = RequestMethod.GET)
-    public String showGuestList(Model model) {
-    	model.addAttribute("patients", OfficeDAO.getAllOficces() );
+    public String showGuestList(Model model, @RequestParam String last_name) {
+    	
+    	model.addAttribute("patients", patientDAO.getPatientsByName(last_name) );
+    	
         return "patients :: patients";
     }
  
