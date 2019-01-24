@@ -42,8 +42,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      // [ROLE_USER, ROLE_ADMIN,..]
         List<String> roleNames = this.RoleDAO.getRoleNames(appUser.getId());
         
-        System.out.println(appUser.getId());
-        
  
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         if (roleNames != null) {

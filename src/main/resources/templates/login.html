@@ -44,6 +44,18 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+
+
+					<div class="wrap-input100 validate-input" data-validate = "Office is required">
+							<select class="input100"f th:each="office: ${offices}">
+								<option th:text="${office.name}" th:value="${office.id}" ></option>
+							</select>
+
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+					</div>
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
