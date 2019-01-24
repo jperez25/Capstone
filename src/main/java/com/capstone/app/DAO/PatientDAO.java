@@ -28,6 +28,13 @@ public class PatientDAO extends JdbcDaoSupport {
 		   
 	   Object[] params = new Object[] { name+"%" };
 	   
+	   if(name != "") {
+		  params = new Object[] { name+"%" };
+	   }
+	   else{
+		   params = new Object[] { name };
+	   }
+	   
 	   List<Patient> patients = this.getJdbcTemplate().query(sql, params, new BeanPropertyRowMapper<Patient>(Patient.class));
 
        return patients;

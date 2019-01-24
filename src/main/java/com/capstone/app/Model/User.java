@@ -8,6 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 @Entity
 public class User {
 
@@ -98,6 +103,22 @@ public class User {
 		this.level = level;
 	}
 	
-	
+	public static boolean isLoggednIn() {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+		    String currentUserName = authentication.getName();
+		    System.out.println(currentUserName);		    
+		}
+		
+		if (authentication.getName() != null) {
+			//System.out.println("user found");
+			return true;
+		}	
+		else {
+			return false;
+		}
+	}
 
 }

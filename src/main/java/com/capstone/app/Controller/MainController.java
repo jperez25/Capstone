@@ -29,6 +29,7 @@ public class MainController {
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
+        model.addAttribute("loggedIn",com.capstone.app.Model.User.isLoggednIn() );
         return "index";
     }
  
@@ -45,6 +46,10 @@ public class MainController {
  
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(Model model) {    	 
+    	
+    	if(com.capstone.app.Model.User.isLoggednIn()) {
+    		return "redirect:/home";
+    	}
     	 
     	 model.addAttribute("offices",  OfficeDAO.getAllOficces());
     	 

@@ -12,7 +12,8 @@
               <div class="carousel-content">
                 <h2 class="animated fadeInDown">Allstar Clinics</h2>
                 <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="/login" class="btn-get-started animated fadeInUp">Log In</a>
+                <a href="/login" th:unless="${loggedIn}" class="btn-get-started animated fadeInUp">Log In</a>
+                <a href="/home" th:if="${loggedIn}" class="btn-get-started animated fadeInUp">Home</a>
               </div>
             </div>
           </div>
