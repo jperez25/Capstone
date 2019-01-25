@@ -109,10 +109,10 @@ public class User {
 		
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 		    String currentUserName = authentication.getName();
-		    System.out.println(currentUserName);		    
+		    //System.out.println(currentUserName);		    
 		}
 		
-		if (authentication.getName() != null) {
+		if (authentication.getName() != null && !authentication.getName().equals("anonymousUser")) {
 			//System.out.println("user found");
 			return true;
 		}	
