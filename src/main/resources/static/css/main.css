@@ -348,7 +348,16 @@ iframe {
   background: #333333;
 }
 
+/*------------------------------------------------------------------
+[Patient Info - Home]
+ */
+.panel-title {
+    padding: 10px;
+}
 
+.table-user-information{
+    padding: 4px;
+}
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
