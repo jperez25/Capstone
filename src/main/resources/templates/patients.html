@@ -6,12 +6,14 @@
       </tr>
     </thead>
     <tbody>
-    
-      <tr th:each="patient: ${patients}">   
-        <a th:href="@{/get_patient/{patient.id}}">               
-            <td th:text="${patient.first_name}"></td>
-        </a>
-            <td th:text="${patient.last_name}"></td>
-      </tr>
+      
+      <tr th:each="patient: ${patients}"> 
+            <td>
+              <button class="btn" th:onclick="'javascript:get_patient(' +${patient.id}+ ')'"  th:text="${patient.first_name}"> </button>     
+            </td>      
+            <td>
+                <button class="btn" th:onclick="'javascript:get_patient(' +${patient.id}+ ')'" th:text="${patient.last_name}"> </button>   
+            </td>
+      </tr>     
     </tbody>
   </table>

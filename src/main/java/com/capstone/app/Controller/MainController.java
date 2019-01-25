@@ -113,5 +113,13 @@ public class MainController {
     	
         return "patients :: patients";
     }
+    
+    @RequestMapping(value = "/get_patient", method = RequestMethod.GET)
+    public String patient_info(Model model, @RequestParam String patient_id) {
+    	
+    	model.addAttribute("patient", patientDAO.getPatientById(patient_id) );
+    	
+        return "patient :: patient_info";
+    }
  
 }
