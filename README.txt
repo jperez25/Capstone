@@ -16,10 +16,15 @@ Project Structure
       -Config
   Resources
     Static
+      -Bootstrap
+      -Color
+      -img
       -CSS
       -JS
+      -Vendor
     Templates
-      -TBA
+      -Layouts
+      -Patient
 
 Dependecies
   Web
