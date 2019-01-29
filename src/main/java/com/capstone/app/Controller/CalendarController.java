@@ -20,4 +20,5 @@ public class CalendarController {
         model.addAttribute("apps", apps.getAllApoiments() );
         return "calendar/calendar.html";
     }
+    
 }

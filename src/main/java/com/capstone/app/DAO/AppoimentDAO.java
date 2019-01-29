@@ -23,7 +23,9 @@ public class AppoimentDAO extends JdbcDaoSupport {
 	}
 	
 	public List<Appoiment> getAllApoiments() {
-		String sql = "select * from appoiment, patient, appoiments_per_patient where appoiments_per_patient.appoiment_id = appoiment.id";
+		String sql = "select id, date, hour, duration, description, attendance, diagnostics, first_name, last_name from (" +
+								"select appoiment.id, date, hour, duration, description, attendance, diagnostics, patient_id, appoiment_id, first_name, last_name from " +
+								"appoiment, patient, appoiments_per_patient where appoiments_per_patient.appoiment_id = appoiment.id) as s;";
 		   
 	   Object[] params = new Object[] {  };
 	   
