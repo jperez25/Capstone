@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "appoiment")
-public class Appoiment {
+@Table(name = "appointment")
+public class Appointment {
 
 
 	@Id
@@ -22,9 +22,9 @@ public class Appoiment {
     private String attendance;
     private String diagnostics;
     
-    public Appoiment() {}
+    public Appointment() {}
     
-    public Appoiment(String date, int hour, int duration, String description, String attendance, String diagnostics) {
+    public Appointment(String date, int hour, int duration, String description, String attendance, String diagnostics) {
 		super();
 		this.date = date;
 		this.hour = hour;
