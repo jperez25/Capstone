@@ -18,13 +18,13 @@ USE `capstone`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `appoiment`
+-- Table structure for table `appointment`
 --
 
-DROP TABLE IF EXISTS `appoiment`;
+DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `appoiment` (
+CREATE TABLE `appointment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
   `hour` int(10) DEFAULT NULL,
@@ -37,42 +37,42 @@ CREATE TABLE `appoiment` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `appoiment`
+-- Dumping data for table `appointment`
 --
 
-LOCK TABLES `appoiment` WRITE;
-/*!40000 ALTER TABLE `appoiment` DISABLE KEYS */;
-INSERT INTO `appoiment` VALUES (1,'2019-02-02',9,'1','descriptiopn',NULL,NULL),(2,'2019-02-02',10,'2','description',NULL,NULL),(3,'2019-02-03',9,'2','description',NULL,NULL),(4,'2019-02-04',11,'2','description',NULL,NULL);
-/*!40000 ALTER TABLE `appoiment` ENABLE KEYS */;
+LOCK TABLES `appointment` WRITE;
+/*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES (1,'2019-02-02',9,'1','descriptiopn',NULL,NULL),(2,'2019-02-02',10,'2','description',NULL,NULL),(3,'2019-02-03',9,'2','description',NULL,NULL),(4,'2019-02-04',11,'2','description',NULL,NULL);
+/*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `appoiments_per_patient`
+-- Table structure for table `appointments_per_patient`
 --
 
-DROP TABLE IF EXISTS `appoiments_per_patient`;
+DROP TABLE IF EXISTS `appointments_per_patient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `appoiments_per_patient` (
+CREATE TABLE `appointments_per_patient` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_id` int(11) DEFAULT NULL,
-  `appoiment_id` int(11) DEFAULT NULL,
+  `appointment_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `patient_app_idx` (`appoiment_id`),
+  KEY `patient_app_idx` (`appointment_id`),
   KEY `patient_id_idx` (`patient_id`),
-  CONSTRAINT `patient_app` FOREIGN KEY (`appoiment_id`) REFERENCES `appoiment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `patient_app` FOREIGN KEY (`appointment_id`) REFERENCES `appointment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `appoiments_per_patient`
+-- Dumping data for table `appointments_per_patient`
 --
 
-LOCK TABLES `appoiments_per_patient` WRITE;
-/*!40000 ALTER TABLE `appoiments_per_patient` DISABLE KEYS */;
-INSERT INTO `appoiments_per_patient` VALUES (1,1,1),(4,1,4);
-/*!40000 ALTER TABLE `appoiments_per_patient` ENABLE KEYS */;
+LOCK TABLES `appointments_per_patient` WRITE;
+/*!40000 ALTER TABLE `appointments_per_patient` DISABLE KEYS */;
+INSERT INTO `appointments_per_patient` VALUES (1,1,1),(4,1,4);
+/*!40000 ALTER TABLE `appointments_per_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -391,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-29 11:45:27
+-- Dump completed on 2019-01-29 17:42:29
