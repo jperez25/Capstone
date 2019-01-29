@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset='utf-8' content="Allstar" name="Author" />
+
+	<link rel="stylesheet" type="text/css" href="css/fullcalendar.css"></link>
+	<link rel="stylesheet" media="print" href="css/fullcalendar.print.css"></link>
+	<script src="js/moment.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/fullcalendar.js"></script>
+
+	<script>
+
+		$(document).ready(function() {
+
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay,listWeek'
+				},
+				defaultDate: new Date().toISOString().slice(0, 10),
+				navLinks: true, // can click day/week names to navigate views
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events: {
+					url: '/get_apps',
+					type: "get",
+					data: {
+						id: "id",
+						date: 'something',
+						hour: 'somethingelse',
+						description: "",
+					},
+					error: function() {
+						$('#script-warning').show();
+					},
+					//color: 'yellow',   // a non-ajax option
+    				//textColor: 'black' // a non-ajax option
+				},
+				loading: function(bool) {
+					$('#loading').toggle(bool);
+				}
+			});
+
+		});
+	</script>
+
+	<style>
+		body {
+			margin: 40px 10px;
+			padding: 0;
+			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+			font-size: 14px;
+		}
+		#calendar {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+	</style>	
+
+</head>
+
+<body>
+	<div id='calendar'></div>
+    <h1 th:text="${apps.get(1).date}"></h1>
+    
+</body>
+</html>
