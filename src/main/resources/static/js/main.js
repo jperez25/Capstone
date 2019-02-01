@@ -16,7 +16,7 @@
       
   }
 
-  function get_patient(patient_id) {
+function get_patient(patient_id) {
     console.log(patient_id);
     
       $.ajax({
@@ -28,8 +28,21 @@
             $( "#patient_info" ).html(  result );
           }
         });
+}
+
+function get_app_by_id(app_id) {
+    console.log(app_id);
     
-    
+      $.ajax({
+          url: "/get_app_by_id",
+          data: {
+            app_id: app_id
+          },
+          success: function( result ) {
+            $( "#modal" ).html(  result );
+            $('#modalBox').modal('show');
+          }
+        });
 }
 
 (function($) {
