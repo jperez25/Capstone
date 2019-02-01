@@ -44,5 +44,16 @@ public class AppointmentDAO extends JdbcDaoSupport {
 
        return apps;
 	}
+	
+	
+	public Appointment getApoimentsById(int id) {
+		String sql = "select * from appointment where id = ?";
+		   
+	   Object[] params = new Object[] { id };
+	   
+	   Appointment app = this.getJdbcTemplate().queryForObject(sql, params, new BeanPropertyRowMapper<Appointment>(Appointment.class));
+
+       return app;
+	}
 
 }

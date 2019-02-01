@@ -6,10 +6,14 @@
 	<meta charset='utf-8' content="Allstar" name="Author" />
 
 	<link rel="stylesheet" type="text/css" href="css/fullcalendar.css"></link>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"></link>
 	<link rel="stylesheet" media="print" href="css/fullcalendar.print.css"></link>
+
 	<script src="js/moment.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="js/fullcalendar.js"></script>
+	<script src="js/main.js"></script>
+	<script src="bootstrap/js/bootstrap.js"></script>
 
 	<script>
 
@@ -21,6 +25,18 @@
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay,listWeek'
 				},
+				eventClick: function(calEvent, jsEvent, view) {
+
+					//alert('Event: ' + calEvent.title);
+					//alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+					//alert('View: ' + view.name);
+					get_app_by_id(calEvent.description);
+					$('#modalBox').modal('toggle');
+					$('#modalBox').modal('show');
+					// change the border color just for fun
+					$(this).css('border-color', 'red');
+				},
+
 				defaultDate: new Date().toISOString().slice(0, 10),
 				navLinks: true, // can click day/week names to navigate views
 				editable: true,
@@ -65,7 +81,8 @@
 
 <body>
 	<div id='calendar'></div>
-    <h1 th:text="${apps.get(1).date}"></h1>
+	<h1 th:text="${apps.get(1).date}"></h1>
+	<div id='modal'></div>
     
 </body>
 </html>
