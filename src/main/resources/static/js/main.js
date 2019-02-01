@@ -1,7 +1,7 @@
 
 
   function get_Patients(last_name) {
-      console.log(last_name);
+      //console.log(last_name);
       
         $.ajax({
             url: "/get_patients",
@@ -15,6 +15,35 @@
       
       
   }
+
+function get_patient(patient_id) {
+    console.log(patient_id);
+    
+      $.ajax({
+          url: "/get_patient",
+          data: {
+            patient_id: patient_id
+          },
+          success: function( result ) {
+            $( "#patient_info" ).html(  result );
+          }
+        });
+}
+
+function get_app_by_id(app_id) {
+    console.log(app_id);
+    
+      $.ajax({
+          url: "/get_app_by_id",
+          data: {
+            app_id: app_id
+          },
+          success: function( result ) {
+            $( "#modal" ).html(  result );
+            $('#modalBox').modal('show');
+          }
+        });
+}
 
 (function($) {
     "use strict";
