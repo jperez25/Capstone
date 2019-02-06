@@ -22,7 +22,7 @@
 
                     <tr>
                       <td>Age:</td>
-                      <td>20</td>
+                      <td th:text="${age}"></td>
                     </tr>
 
                     <tr>
@@ -32,7 +32,7 @@
 
                     <tr>
                         <td>height:</td>
-                        <td th:text="${patient.height}"></td>
+                        <td th:text="${patient.height} + ' in'"></td>
                     </tr>
 
                     <tr>

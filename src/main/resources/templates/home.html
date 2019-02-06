@@ -24,72 +24,8 @@
         <div id="patient_info" class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
 
-
-              <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Patient Profile</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class=" col-md-9 col-lg-9 ">
-                        <table class="table table-user-information">
-                          <tbody>
-                          <tr>
-                            <td> <b>Personal Information: </b></td>
-                            <td></td>
-                          </tr>
-      
-                          <tr>
-                            <td>Patient Name:</td>
-                            <td> </td>
-                          </tr>
-      
-                          <tr>
-                            <td>Age:</td>
-                            <td></td>
-                          </tr>
-      
-                          <tr>
-                              <td>Weight:</td>
-                              <td ></td>
-                          </tr>
-      
-                          <tr>
-                              <td>height:</td>
-                              <td></td>
-                          </tr>
-      
-                          <tr>
-                            <td>Gender:</td>
-                            <td></td>
-                          </tr>
-      
-                          <tr>
-                            <td>Address:</td>
-                            <td></td>
-                          </tr>
-      
-                          <tr>
-                            <td>Mobile:</td>
-                            <td></td>
-                          </tr>
-      
-                          <tr>
-                              <td>SSN:</td>
-                              <td> </td>
-                          </tr>
-      
-                          <tr>
-                            <td>Marital Status:</td>
-                            <td> </td>
-                          </tr>
-      
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+              <div th:replace = "patient/patientInfo :: all_pat_info"></div>
+              
           </div>
         </div>
       </main><!-- /.container -->

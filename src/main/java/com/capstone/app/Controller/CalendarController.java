@@ -58,14 +58,15 @@ public class CalendarController {
     	
     	for (Appointment app : appo) {
 			Event ev = new Event();	
-			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ", Locale.getDefault());
 
 			Date day = null;
 			Date endtime = null;
 			try {
 				int endhour = app.getHour()+app.getDuration();
-				day = sdf.parse(app.getDate()+" "+app.getHour()+":00:00");
-				endtime = sdf.parse(app.getDate()+" "+endhour+":00:00");
+				day = sdf.parse(app.getDate()+" "+(app.getHour()-8)+":00:00-0800");
+				
+				endtime = sdf.parse(app.getDate()+" "+(endhour -8)+":00:00-0800");
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

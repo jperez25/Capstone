@@ -2,7 +2,7 @@
 
     <form action="#" th:action="@{/store_patient}" th:object="${patient}" method="post">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">Patient</h3>
@@ -18,12 +18,12 @@
                                             </tr>
         
                                         <tr>
-                                            <td>Patient First Name:</td>
+                                            <td>First Name:</td>
                                             <td>
                                                 <input placeholder="First Name" name="first_name" type="text" th:field="*{first_name}" />
                                             </td>                                   
                                         </tr>
-                                            <td>Patient Last Name:</td>
+                                            <td>Last Name:</td>
                                             <td>
                                                 <input placeholder="Last Name" name="last_name" type="text" th:field="*{last_name}" />
                                             </td>  
@@ -91,7 +91,7 @@
                     </div>
             </div>
             
-            <div class="col-lg-4" style="margin-left: 50px">
+            <div class="col-lg-3" style="margin-left: 60px">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Insurance</h3>
@@ -128,6 +128,51 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-lg-3" style="margin-left: 60px">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Medical History</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class=" col-md-9 col-lg-9 ">
+                                    <table class="table table-user-information">
+                                        <tbody id = "table_body">
+                                        <tr>
+                                            <td style="height: 73px"> <b>Illnesses</b></td>
+                                            <td><span class="btn btn-primary" style="border-radius: 50%;" onclick="add_fields();"><i class="fa fa-plus"></i></span></td>
+                                        </tr>
+        
+                                        <tr>
+                                        <td>Insurer:</td>
+                                        <td>
+                                            <input placeholder="Type" name="company_name" type="text" />
+                                        </td>
+                                        </tr>
+        
+                                        <tr>
+                                        <td>Name:</td>
+                                        <td>
+                                            <input placeholder="Name" name="insurance_number" type="text" />
+                                        </td>
+                                        </tr>
+
+                                        <tr>
+                                        <td>description:</td>
+                                        <td>
+                                            <input placeholder="Description" name="insurance_number" type="text" />
+                                        </td>
+                                        </tr>
+                                        
+        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
         </div>

@@ -43,6 +43,17 @@ function get_app_by_id(app_id) {
     });
 }
 
+function add_fields() {
+    var d = document.getElementById("table_body");
+   
+    d.innerHTML += "<tr>"+
+                        "<td>Insurer:</td>"+
+                        "<td>"+
+                            "<input placeholder='Type' name='company_name' type='text' />"+
+                        "</td>"+
+                    "</tr>";
+ }
+
 (function($) {
     "use strict";
 
