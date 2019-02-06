@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -81,6 +82,11 @@ public class CalendarController {
 		}
         
         return new ResponseEntity<List<Event>>(events, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/calendar/add_event", method=RequestMethod.GET) 
+    public String add_event(Model model) {
+        return "calendar/add :: add_event";
     }
     
     @RequestMapping(value="/get_app_by_id", method=RequestMethod.GET) 
