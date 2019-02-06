@@ -9,6 +9,8 @@ import javax.persistence.Id;
 public class Patient {
 	
 	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -18,23 +20,29 @@ public class Patient {
 	private double height;
 	private int eye_colour;
 	private String ssn;
+	private String DOB;
+	private String phone_number;
+	private String insurance;
 	
 	public  Patient() {}
-	
-	public Patient(String first_name, String last_name, double weight, double height, int eye_colour,
-			String ssn) {
+
+	public Patient(String first_name, String last_name, double weight, double height, int eye_colour, String ssn,
+			String dOB, String phone_number, String insurance) {
 		super();
-		this.id = id;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.weight = weight;
 		this.height = height;
 		this.eye_colour = eye_colour;
 		this.ssn = ssn;
+		this.DOB = dOB;
+		this.phone_number = phone_number;
+		this.insurance = insurance;
 	}
 	
+	
 	public Patient(int id, String first_name, String last_name, double weight, double height, int eye_colour,
-			String ssn) {
+			String ssn, String dOB, String phone_number, String insurance) {
 		super();
 		this.id = id;
 		this.first_name = first_name;
@@ -43,6 +51,9 @@ public class Patient {
 		this.height = height;
 		this.eye_colour = eye_colour;
 		this.ssn = ssn;
+		this.DOB = dOB;
+		this.phone_number = phone_number;
+		this.insurance = insurance;
 	}
 
 	public int getId() {
@@ -99,6 +110,30 @@ public class Patient {
 
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
+	}
+
+	public String getDOB() {
+		return this.DOB;
+	}
+
+	public void setDOB(String dOB) {
+		this.DOB = dOB;
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+
+	public String getInsurance() {
+		return insurance;
+	}
+
+	public void setInsurance(String insurance) {
+		this.insurance = insurance;
 	}
 	
 	

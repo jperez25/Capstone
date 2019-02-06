@@ -14,10 +14,7 @@
       <div id="sidebar" class="sidebar-offcanvas">
           <div class="col-sm-12">
             <h3>Patients</h3>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" id="patient_search" onkeyup="get_Patients(document.getElementById('patient_search').value)" placeholder="Last Name" aria-label="Search">
-              </form>
-
+                <input class="form-control mr-sm-2" type="text" id="patient_search" onkeyup="get_Patients(document.getElementById('patient_search').value)" placeholder="Last Name" aria-label="Search">              
               <div id="patients"></div>
           </div>
         </div>
@@ -27,54 +24,8 @@
         <div id="patient_info" class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
 
-
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">Patient Profile</h3>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-                  <div class=" col-md-9 col-lg-9 ">
-                    <table class="table table-user-information">
-                      <tbody>
-                      <tr>
-                        <td> <b>Personal Information: </b></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>Patient Name:</td>
-                        <td> Random Person</td>
-                      </tr>
-                      <tr>
-                        <td>Age:</td>
-                        <td>20</td>
-                      </tr>
-                      <tr>
-                        <td>Gender:</td>
-                        <td> M</td>
-                      </tr>
-                      <tr>
-                        <td>Address:</td>
-                        <td>Place</td>
-                      </tr>
-                      <tr>
-                        <td>Mobile:</td>
-                        <td>123-456-7890</td>
-                      </tr>
-                        <td>Job:</td>
-                        <td> Jobby Job </td>
-                      <tr>
-                        <td>Marital Status:</td>
-                        <td> Single </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
+              <div th:replace = "patient/patientInfo :: all_pat_info"></div>
+              
           </div>
         </div>
       </main><!-- /.container -->
