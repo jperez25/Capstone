@@ -59,17 +59,15 @@ public class CalendarController {
     	
     	for (Appointment app : appo) {
 			Event ev = new Event();	
-			TimeZone tz = TimeZone.getTimeZone("UTC");
-			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ", Locale.US);
-			sdf.setTimeZone(tz);
+			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ", Locale.getDefault());
+
 			Date day = null;
 			Date endtime = null;
 			try {
 				int endhour = app.getHour()+app.getDuration();
-				System.out.println(app.getDate());
-				System.out.println(app.getHour());
-				day = sdf.parse(app.getDate()+"T"+Integer.toString(app.getHour()-8)+":00-0800");
-				endtime = sdf.parse(app.getDate()+"T"+Integer.toString(endhour-8)+":00-0800");
+				day = sdf.parse(app.getDate()+" "+(app.getHour()-8)+":00:00-0800");
+				
+				endtime = sdf.parse(app.getDate()+" "+(endhour -8)+":00:00-0800");
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
