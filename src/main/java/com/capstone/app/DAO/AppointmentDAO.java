@@ -76,4 +76,14 @@ public class AppointmentDAO extends JdbcDaoSupport {
         Object[] params = new Object[] {date, start, duration,description,0, "", id};
         this.getJdbcTemplate().update(sql, params);  
     }
+	
+	 public void deleteAppointment(int id) {
+	        
+	      String sql = "DELETE FROM appointments_per_patient WHERE appointment_id = ?";
+	      String sql_two = "DELETE FROM appointment WHERE id = ?";
+	      Object[] params = new Object[] {id};
+	      this.getJdbcTemplate().update(sql, params);  
+	      this.getJdbcTemplate().update(sql_two, params); 
+	    }
+	   
 }
