@@ -23,6 +23,7 @@
                                                 <input placeholder="First Name" name="first_name" type="text" th:field="*{first_name}" />
                                             </td>                                   
                                         </tr>
+                                        <tr>
                                             <td>Last Name:</td>
                                             <td>
                                                 <input placeholder="Last Name" name="last_name" type="text" th:field="*{last_name}" />
@@ -91,7 +92,7 @@
                     </div>
             </div>
             
-            <div class="col-lg-3" style="margin-left: 60px">
+            <div class="col-lg-3" style="margin-left: 70px">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Insurance</h3>
@@ -110,6 +111,27 @@
                                     <td>Insurer:</td>
                                     <td>
                                         <input placeholder="Company Name" name="company_name" type="text" />
+                                    </td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>Group Number:</td>
+                                    <td>
+                                        <input placeholder="Group Number" name="group_number" type="text" />
+                                    </td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>PCP:</td>
+                                    <td>
+                                        <input placeholder="PCP" name="pcp" type="text" />
+                                    </td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>Effective Date:</td>
+                                    <td>
+                                        <input placeholder="Effective until" name="expiration_date" type="date" />
                                     </td>
                                     </tr>
     
@@ -146,7 +168,7 @@
                                         </tr>
         
                                         <tr>
-                                        <td>Insurer:</td>
+                                        <td>Type:</td>
                                         <td>
                                             <input placeholder="Type" name="company_name" type="text" />
                                         </td>
