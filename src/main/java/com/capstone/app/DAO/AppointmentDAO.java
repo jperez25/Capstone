@@ -25,9 +25,12 @@ public class AppointmentDAO extends JdbcDaoSupport {
 	}
 	
 	public List<Appointment> getAllApoiments() {
-		String sql = "select id, date, hour, duration, description, attendance, diagnostics, first_name, last_name from (" +
+		/*String sql = "select id, date, hour, duration, description, attendance, diagnostics, first_name, last_name from (" +
 								"select appointment.id, date, hour, duration, description, attendance, diagnostics, patient_id, appointment_id, first_name, last_name from " +
 								"appointment, patient, appointments_per_patient where appointments_per_patient.appointment_id = appointment.id) as s;";
+		*/
+		
+		String sql = "select * from appointment, (select appointment_id from appointments_per_patient) as pat_appt where pat_appt.appointment_id = appointment.id;";
 		   
 	   Object[] params = new Object[] {  };
 	   
