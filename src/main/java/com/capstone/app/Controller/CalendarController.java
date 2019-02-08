@@ -103,6 +103,14 @@ public class CalendarController {
         apps.updateAppointment(id, date, start, duration, description);
         return "redirect:/calendar";
     }
+    
+    @RequestMapping(value="/calendar/delete_event", method=RequestMethod.POST) 
+    public String delete_event(Model model, @RequestParam("id") int id) {
+        model.addAttribute("apps", apps.getAllApoiments() );
+        apps.deleteAppointment(id);
+        return "redirect:/calendar";
+    }
+    
     @RequestMapping(value="/calendar/store_event", method=RequestMethod.POST) 
     public String store(Model model, @RequestParam("patient") String patient, @RequestParam("doctor") String doctor, @RequestParam("start") int start, @RequestParam("duration") String duration, @RequestParam("date") String date) {
         model.addAttribute("apps", apps.getAllApoiments() );
