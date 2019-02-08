@@ -8,8 +8,30 @@
           </button>
         </div>
         <div class="modal-body">
-            <h1 th:text="${app.hour}"></h1>
-          <p>Modal body text goes here.</p>
+            <form th:action="@{/calendar/update_event}" th:object="${appointment}" method="POST">
+          <input type="hidden" id="id" name="id" th:value="${app.id}">
+  			<div class="form-group">
+    			<label for="Appointment">Description of Appointment</label>
+    			<input type="text" class="form-control" id="description" name="description" placeholder="" th:value="${app.description}">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Start of Appointment</label>
+    			<input type="text" class="form-control" id="start" name="start" placeholder="" th:value="${app.hour}">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">End of Appointment</label>
+    			<input type="text" class="form-control" id="duration" name="duration" placeholder="" th:value="${app.duration + app.hour}">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="date" class="form-control" id="date" name="date" placeholder="" th:value="${app.date}">
+ 			</div>
+  			
+  			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
           
         </div>
         <div class="modal-footer">
@@ -19,3 +41,4 @@
       </div>
     </div>
   </div>
+  th:text="${app.description}"

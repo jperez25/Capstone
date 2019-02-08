@@ -8,21 +8,31 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form th:action="@{/calendar/store_event}" th:object="${appointment}" method="POST">
           
   			<div class="form-group">
     			<label for="Patient_Name">Patient Name</label>
-    			<input type="text" class="form-control" id="add_patient" placeholder="">
+    			<input type="text" class="form-control" id="patient" name="patient" placeholder="">
  			</div>
- 			
+ 				
  			<div class="form-group">
-    			<label for="Patient_Name">Doctor Name</label>
-    			<input type="text" class="form-control" id="add_doctor" placeholder="">
+    			<label for="doctor">Doctor Name</label>
+    			<input type="text" class="form-control" id="add_doctor" name = "doctor" placeholder="">
  			</div>
   			
   			<div class="form-group">
-    			<label for="Patient_Name">Date of Appointment</label>
-    			<input type="date" class="form-control" id="add_patient" placeholder="">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="text" class="form-control" id="start" name="start" placeholder="">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="text" class="form-control" id="duration" name="duration" placeholder="">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="date" class="form-control" id="date" name="date" placeholder="">
  			</div>
   			
   			<button type="submit" class="btn btn-primary">Submit</button>
