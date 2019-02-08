@@ -27,13 +27,15 @@ DROP TABLE IF EXISTS `appointment`;
 CREATE TABLE `appointment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `hour` int(10) DEFAULT NULL,
-  `duration` varchar(45) DEFAULT NULL,
+  `hour` tinyint(10) DEFAULT NULL,
+  `duration` tinyint(10) DEFAULT NULL,
+  `doctor` varchar(45) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
+  `purpose` text,
   `attendance` tinyint(4) DEFAULT NULL,
-  `diagnostics` varchar(45) DEFAULT NULL,
+  `diagnostics` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,9 +44,27 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES (1,'2019-02-02',9,'1','descriptiopn',NULL,NULL),(2,'2019-02-02',10,'2','description',NULL,NULL),(3,'2019-02-03',9,'2','description',NULL,NULL),(4,'2019-02-04',11,'2','description',NULL,NULL);
+INSERT INTO `appointment` VALUES (1,'2019-02-02',9,17,NULL,'descriptiopn',NULL,0,''),(2,'2019-02-02',10,2,NULL,'description',NULL,NULL,NULL),(3,'2019-02-03',9,2,NULL,'description',NULL,NULL,NULL),(4,'2019-02-04',9,1,NULL,'description',NULL,0,''),(5,'2019-02-04',10,1,NULL,'des',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `capstone`.`appointment_AFTER_INSERT` AFTER INSERT ON `appointment` FOR EACH ROW
+BEGIN
+	insert appointments_per_patient (patient_id, appointment_id) values(0, (select max(id) from appointment));
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `appointments_per_patient`
@@ -62,7 +82,7 @@ CREATE TABLE `appointments_per_patient` (
   KEY `patient_id_idx` (`patient_id`),
   CONSTRAINT `patient_app` FOREIGN KEY (`appointment_id`) REFERENCES `appointment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +91,7 @@ CREATE TABLE `appointments_per_patient` (
 
 LOCK TABLES `appointments_per_patient` WRITE;
 /*!40000 ALTER TABLE `appointments_per_patient` DISABLE KEYS */;
-INSERT INTO `appointments_per_patient` VALUES (1,1,1),(4,1,4);
+INSERT INTO `appointments_per_patient` VALUES (1,1,1),(4,1,4),(5,0,4),(6,0,5);
 /*!40000 ALTER TABLE `appointments_per_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,6 +121,31 @@ LOCK TABLES `conditions` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `doctor`
+--
+
+DROP TABLE IF EXISTS `doctor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `doctor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `doctor`
+--
+
+LOCK TABLES `doctor` WRITE;
+/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `eye`
 --
 
@@ -122,6 +167,58 @@ LOCK TABLES `eye` WRITE;
 /*!40000 ALTER TABLE `eye` DISABLE KEYS */;
 INSERT INTO `eye` VALUES (1,'blue'),(2,'brown'),(3,'green');
 /*!40000 ALTER TABLE `eye` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `insurance`
+--
+
+DROP TABLE IF EXISTS `insurance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `insurance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `insurance_name` varchar(45) DEFAULT NULL,
+  `group_number` varchar(45) DEFAULT NULL,
+  `pcp` varchar(100) DEFAULT NULL,
+  `effective_date` date DEFAULT NULL,
+  `insurance_number` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `insurance`
+--
+
+LOCK TABLES `insurance` WRITE;
+/*!40000 ALTER TABLE `insurance` DISABLE KEYS */;
+/*!40000 ALTER TABLE `insurance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `marital_status`
+--
+
+DROP TABLE IF EXISTS `marital_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `marital_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `marital_status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `marital_status`
+--
+
+LOCK TABLES `marital_status` WRITE;
+/*!40000 ALTER TABLE `marital_status` DISABLE KEYS */;
+INSERT INTO `marital_status` VALUES (1,'single'),(2,'married'),(3,'widowed'),(4,'divorced');
+/*!40000 ALTER TABLE `marital_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -185,15 +282,22 @@ CREATE TABLE `patient` (
   `last_name` varchar(45) DEFAULT NULL,
   `weight` varchar(45) DEFAULT NULL,
   `height` varchar(45) DEFAULT NULL,
+  `gender` tinyint(4) DEFAULT NULL,
   `eye_colour` int(11) DEFAULT NULL,
   `ssn` varchar(45) DEFAULT NULL,
   `DOB` date DEFAULT NULL,
   `phone_number` varchar(13) DEFAULT NULL,
-  `insurance` varchar(45) DEFAULT NULL,
+  `insurance` int(11) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `marital status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `eye_idx` (`eye_colour`),
-  CONSTRAINT `eye` FOREIGN KEY (`eye_colour`) REFERENCES `eye` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `insurance_idx` (`insurance`),
+  KEY `marital_status_idx` (`marital status`),
+  CONSTRAINT `eye` FOREIGN KEY (`eye_colour`) REFERENCES `eye` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `insurance` FOREIGN KEY (`insurance`) REFERENCES `insurance` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `marital_status` FOREIGN KEY (`marital status`) REFERENCES `marital_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +306,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (1,'Jovanny','Perez','170','68',1,'111224444','1996-08-24',NULL,NULL);
+INSERT INTO `patient` VALUES (0,'set','set',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Jovanny','Perez','170','68',NULL,1,'111224444','1996-08-24',NULL,NULL,NULL,NULL),(3,'Jovanny2','Perez','170.0','68.0',NULL,1,'123456789','1996-08-24','3312289037',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +495,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-29 17:42:29
+-- Dump completed on 2019-02-08 11:47:17
