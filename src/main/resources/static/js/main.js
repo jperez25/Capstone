@@ -43,6 +43,16 @@ function get_app_by_id(app_id) {
     });
 }
 
+function modalAdd(){
+    $.ajax({
+        url: "/calendar/add_event",
+        success: function( result ) {
+            $( "#modal_add" ).html(  result );
+            $('#modal_edit').modal('show');
+        }
+    });
+}
+
 function add_fields() {
     var d = document.getElementById("table_body");
    
@@ -51,7 +61,20 @@ function add_fields() {
                         "<td>"+
                             "<input placeholder='Type' name='company_name' type='text' />"+
                         "</td>"+
+                    "</tr>"+
+                    "<tr>"+
+                        "<td>Name:</td>"+
+                        "<td>"+
+                            "<input placeholder='Name' name='insurance_number' type='text'/>"+
+                        "</td>"+
+                    "</tr>"+
+                    "<tr>"+
+                        "<td>Name:</td>"+
+                        "<td>"+
+                            "<input placeholder='Description' name='insurance_number' type='text'/>"+
+                        "</td>"+
                     "</tr>";
+                    
  }
 
 (function($) {

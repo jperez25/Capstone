@@ -64,15 +64,6 @@
 				}
 			});
 			});
-	function modalAdd(){
-		$.ajax({
-        url: "/calendar/add_event",
-        success: function( result ) {
-        $( "#modal_add" ).html(  result );
-        $('#modal_edit').modal('show');
-        }
-			});
-		}
 	</script>
 
 	<style>
@@ -90,10 +81,12 @@
 
 </head>
 
-<body>
+<body style="padding-top: 55px;">
+	<div th:replace="layouts/navbar2 :: nav"></div>
 	<div id='calendar'></div>
-	<h1 th:text="${apps.get(1).date}"></h1>
+
 	<div id='modal'></div>
-	<button onclick='modalAdd()'>Add an appointment</button>
 	<div id='modal_add'></div>
+
+	<button class="btn btn-outline-success" onclick='modalAdd()'>Add an appointment</button>
 </html>

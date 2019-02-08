@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.DAO.PatientDAO;
 import com.capstone.app.Model.Patient;
@@ -25,6 +26,7 @@ public class PatientController {
 	
 	@RequestMapping(value = "/store_patient", method = RequestMethod.POST)
 	public String store(@ModelAttribute Patient pat) {
+		
 		
 		patientDAO.newPatient(pat);
 		
