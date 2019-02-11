@@ -92,7 +92,7 @@
                     </div>
             </div>
             
-            <div class="col-lg-3" style="margin-left: 70px">
+            <div class="col-lg-3" style="margin-left: 70px" th:object="${insurance}">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Insurance</h3>
@@ -110,35 +110,35 @@
                                     <tr>
                                     <td>Insurer:</td>
                                     <td>
-                                        <input placeholder="Company Name" name="company_name" type="text" />
+                                        <input placeholder="Company Name" name="company_name" type="text" th:field="*{insurance_name}" />
                                     </td>
                                     </tr>
 
                                     <tr>
                                     <td>Group Number:</td>
                                     <td>
-                                        <input placeholder="Group Number" name="group_number" type="text" />
+                                        <input placeholder="Group Number" name="group_number" type="text" th:field="*{group_number}" />
                                     </td>
                                     </tr>
 
                                     <tr>
                                     <td>PCP:</td>
                                     <td>
-                                        <input placeholder="PCP" name="pcp" type="text" />
+                                        <input placeholder="PCP" name="pcp" type="text" th:field="*{pcp}" />
                                     </td>
                                     </tr>
 
                                     <tr>
                                     <td>Effective Date:</td>
                                     <td>
-                                        <input placeholder="Effective until" name="expiration_date" type="date" />
+                                        <input placeholder="Effective until" name="expiration_date" type="date" th:field="*{effective_date}" />
                                     </td>
                                     </tr>
     
                                     <tr>
                                     <td>Insurance Number:</td>
                                     <td>
-                                        <input placeholder="Inusrance Number" name="insurance_number" type="text" />
+                                        <input placeholder="Inusrance Number" name="insurance_number" type="text" th:field="*{insurance_number}" />
                                     </td>
                                     </tr>
     
@@ -152,7 +152,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3" style="margin-left: 60px">
+            <div class="col-lg-3" style="margin-left: 70px" th:object=${conditions}>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">Medical History</h3>
@@ -166,27 +166,29 @@
                                             <td style="height: 73px"> <b>Illnesses</b></td>
                                             <td><span class="btn btn-primary" style="border-radius: 50%;" onclick="add_fields();"><i class="fa fa-plus"></i></span></td>
                                         </tr>
-        
-                                        <tr>
-                                        <td>Type:</td>
-                                        <td>
-                                            <input placeholder="Type" name="company_name" type="text" />
-                                        </td>
-                                        </tr>
-        
-                                        <tr>
-                                        <td>Name:</td>
-                                        <td>
-                                            <input placeholder="Name" name="insurance_number" type="text" />
-                                        </td>
-                                        </tr>
+                                        
+                                        <div th:each = "condition : ${conditions}">
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>
+                                                    <input placeholder="Type" name="type_of_illness" type="text" />
+                                                </td>
+                                            </tr>
+            
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>
+                                                    <input placeholder="Name" name="name_of_illness" type="text" />
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                        <td>description:</td>
-                                        <td>
-                                            <input placeholder="Description" name="insurance_number" type="text" />
-                                        </td>
-                                        </tr>
+                                            <tr>
+                                                <td>description:</td>
+                                                <td>
+                                                    <input placeholder="Description" name="description" type="text" />
+                                                </td>
+                                            </tr>
+                                        </div>
                                         
         
                                         </tbody>

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.capstone.app.DAO.InsuranceDAO;
 import com.capstone.app.DAO.OfficeDAO;
 import com.capstone.app.DAO.PatientDAO;
 import com.capstone.app.DAO.UserDAO;
+import com.capstone.app.Model.Insurance;
 import com.capstone.app.Model.Patient;
 import com.capstone.app.Utils.WebUtils;
  
@@ -27,6 +29,9 @@ public class MainController {
 	
 	@Autowired
 	PatientDAO patientDAO;
+	
+	@Autowired 
+	InsuranceDAO insuranceDAO;
 	
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
@@ -122,6 +127,8 @@ public class MainController {
     	
     	Patient pat =  patientDAO.getPatientById(patient_id);
     	
+    	Insurance pat_insurance = insuranceDAO.getInsuranceById(pat.getInsurance());
+    	
     	//get patients DOB
     	String[] DOBArray = pat.getDOB().split("-");
     	int day = Integer.parseInt(DOBArray[2]); 
@@ -142,6 +149,7 @@ public class MainController {
     	
     	model.addAttribute("patient", pat );
     	model.addAttribute("age", years);
+    	model.addAttribute("pat_insurance", pat_insurance);
     	
         return "patient\\patient :: patient_info";
     }
