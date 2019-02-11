@@ -38,10 +38,10 @@ public class PatientController {
 		
 		model.addAttribute("insurance", new Insurance());
 		
-		List<Conditions> conditions = new ArrayList<Conditions>(10);
+		List<Conditions> conditions = new ArrayList<Conditions>();
 		
-		for (Conditions condition : conditions) {
-			condition = new Conditions();
+		for (int i = 0; i < 10; i++) {
+			conditions.add(new Conditions());
 		}
 		
 		model.addAttribute("conditions", conditions);
@@ -50,11 +50,11 @@ public class PatientController {
 	}
 	
 	@RequestMapping(value = "/store_patient", method = RequestMethod.POST)
-	public String store(@ModelAttribute Patient pat, @ModelAttribute Insurance insurance, @ModelAttribute List<Conditions> conditions) {
+	public String store(@ModelAttribute Patient pat, @ModelAttribute Insurance insurance, @ModelAttribute ArrayList<Conditions> conditions) {
 		
-		for (Conditions condition : conditions) {
+		/*for (Conditions condition : conditions) {
 			conditionsDAO.newCondition(condition);
-		}
+		}*/
 		//insuranceDAO.newInsurance(insurance);
 		//patientDAO.newPatient(pat);
 		
