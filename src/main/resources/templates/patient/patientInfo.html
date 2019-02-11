@@ -1,0 +1,107 @@
+<div th:fragment = "all_pat_info" class="row">
+        <div th:replace = ":: patient_profile" class="col-lg-4">
+        </div>
+        
+        <div th:replace = ":: insurance_info" class="col-lg-4" style="margin-left: 50px">
+        </div>
+</div>
+
+<div th:fragment = "patient_profile" class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Patient Profile</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td> <b>Personal Information: </b></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td>Patient Name:</td>
+                  <td> </td>
+                </tr>
+
+                <tr>
+                  <td>Age:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                    <td>Weight:</td>
+                    <td ></td>
+                </tr>
+
+                <tr>
+                    <td>height:</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                  <td>Gender:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td>Address:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td>Mobile:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                    <td>SSN:</td>
+                    <td> </td>
+                </tr>
+
+                <tr>
+                  <td>Marital Status:</td>
+                  <td> </td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+</div>
+
+<div th:fragment = "insurance_info" class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Insurance</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class=" col-md-9 col-lg-9 ">
+                    <table class="table table-user-information">
+                        <tbody>
+                        <tr>
+                            <td> <b>Insurance Information</b></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                        <td>Insurer:</td>
+                        <td>
+                            <input placeholder="Company Name" name="company_name" type="text" />
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Insurance Number:</td>
+                        <td>
+                            <input placeholder="Inusrance Number" name="insurance_number" type="text" />
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>

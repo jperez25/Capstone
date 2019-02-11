@@ -1,14 +1,17 @@
 package com.capstone.app.DAO;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.Model.Appointment;
 
@@ -55,5 +58,32 @@ public class AppointmentDAO extends JdbcDaoSupport {
 
        return app;
 	}
-
+	
+	public void storeAppointment(String date, int start, String duration, String patient, String doctor) {
+	    
+	    System.out.println(patient);
+	    String sql = "INSERT INTO appointment (date, hour, duration, description, attendance, diagnostics)"
+	                  + " VALUES (?, ?, ?, ?, ?, ?)";
+	    Object[] params = new Object[] {date, start, duration,patient+doctor,0, ""};
+	    this.getJdbcTemplate().update(sql, params);  
+    
+    }
+	
+	public void updateAppointment(int id, String date, int start, String duration, String description) {
+        
+        String sql = "UPDATE appointment SET date = ?, hour = ?, duration = ?, description = ?, attendance = ?, diagnostics = ?"
+                      + " WHERE appointment.id = ?";
+        Object[] params = new Object[] {date, start, duration,description,0, "", id};
+        this.getJdbcTemplate().update(sql, params);  
+    }
+	
+	 public void deleteAppointment(int id) {
+	        
+	      String sql = "DELETE FROM appointments_per_patient WHERE appointment_id = ?";
+	      String sql_two = "DELETE FROM appointment WHERE id = ?";
+	      Object[] params = new Object[] {id};
+	      this.getJdbcTemplate().update(sql, params);  
+	      this.getJdbcTemplate().update(sql_two, params); 
+	    }
+	   
 }

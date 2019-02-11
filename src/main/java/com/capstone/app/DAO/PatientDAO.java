@@ -51,4 +51,20 @@ public class PatientDAO extends JdbcDaoSupport {
 	       return patient;
 		
 	}
+	
+	public boolean newPatient(Patient pat) {
+		String sql = "INSERT INTO patient(first_name, last_name, weight, height, eye_colour, ssn, DOB, phone_number, insurance )"+
+										" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? );";
+		
+		Object[] params = new Object[] { pat.getFirst_name(), pat.getLast_name(), pat.getWeight(), pat.getHeight(), 1, pat.getSsn(), pat.getDOB(), pat.getPhone_number(), null };
+		
+		int rsult = this.getJdbcTemplate().update(sql, params);
+		
+		if( rsult > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
