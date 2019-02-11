@@ -40,7 +40,7 @@ public class PatientController {
 		
 		List<Conditions> conditions = new ArrayList<Conditions>();
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			conditions.add(new Conditions());
 		}
 		
