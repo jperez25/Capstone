@@ -1,0 +1,19 @@
+<table class="table" th:fragment="patients">
+    <thead>
+      <tr>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr th:each="patient: ${patients}"> 
+            <td>
+              <button class="btn" th:onclick="'javascript:get_patient(' +${patient.id}+ ')'"  th:text="${patient.first_name}"> </button>     
+            </td>      
+            <td>
+                <button class="btn" th:onclick="'javascript:get_patient(' +${patient.id}+ ')'" th:text="${patient.last_name}"> </button>   
+            </td>
+      </tr>     
+    </tbody>
+  </table>

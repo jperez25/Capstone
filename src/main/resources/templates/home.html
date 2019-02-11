@@ -1,12 +1,12 @@
 
 <!doctype html>
 <html lang="en">
-  <head th:insert="head::header">
+  <head th:insert="layouts/head::header">
   </head>
 
   <body style="padding-top: 55px;">
 
-    <nav th:insert="navbar2 :: nav2"></nav>
+    <nav th:insert="layouts/navbar2 :: nav2"></nav>
 
 
       
@@ -23,7 +23,7 @@
       <!-- /#sidebar-wrapper --> 
 
       <main role="main" class="container">
-        <div class="row">
+        <div id="patient_info" class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
 
 
