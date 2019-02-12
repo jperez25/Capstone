@@ -77,6 +77,7 @@ function add_fields() {
                     
  }
 
+
 (function($) {
     "use strict";
 

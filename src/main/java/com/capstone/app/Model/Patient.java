@@ -37,7 +37,7 @@ public class Patient {
 		this.gender = gender;
 		this.eye_colour = eye_colour;
 		this.ssn = ssn;
-		DOB = dOB;
+		this.DOB = dOB;
 		this.phone_number = phone_number;
 		this.insurance = insurance;
 		this.address = address;

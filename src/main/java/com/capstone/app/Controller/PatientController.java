@@ -19,6 +19,7 @@ import com.capstone.app.Model.Conditions;
 import com.capstone.app.Model.Insurance;
 import com.capstone.app.Model.Office;
 import com.capstone.app.Model.Patient;
+import com.capstone.app.Wrappers.ConditionsWrapper;
 
 @Controller
 public class PatientController {
@@ -38,10 +39,10 @@ public class PatientController {
 		
 		model.addAttribute("insurance", new Insurance());
 		
-		List<Conditions> conditions = new ArrayList<Conditions>();
+		ConditionsWrapper conditions = new ConditionsWrapper();
 		
 		for (int i = 0; i < 1; i++) {
-			conditions.add(new Conditions());
+			conditions.addCondition(new Conditions());
 		}
 		
 		model.addAttribute("conditions", conditions);
@@ -50,11 +51,18 @@ public class PatientController {
 	}
 	
 	@RequestMapping(value = "/store_patient", method = RequestMethod.POST)
-	public String store(@ModelAttribute Patient pat, @ModelAttribute Insurance insurance, @ModelAttribute ArrayList<Conditions> conditions) {
+	public String store(@ModelAttribute Patient pat, @ModelAttribute Insurance insurance, @ModelAttribute ConditionsWrapper conditions) {
 		
-		/*for (Conditions condition : conditions) {
-			conditionsDAO.newCondition(condition);
+		System.out.println(conditions.getConditionsList().get(0).getName());
+		
+		/*for (Conditions condition : conditions.getConditionsList()) {
+			if (!condition.getName().equals(null) && !condition.getType().equals(null) && condition.getDescription().equals(null)) {
+				conditionsDAO.newCondition(condition);
+			} else {
+				System.out.println("incomplete condition");
+			}
 		}*/
+		
 		//insuranceDAO.newInsurance(insurance);
 		//patientDAO.newPatient(pat);
 		

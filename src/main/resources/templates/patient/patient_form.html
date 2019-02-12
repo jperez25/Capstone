@@ -1,206 +1,231 @@
-<div th:fragment="patient_form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
-
-    <form action="#" th:action="@{/store_patient}" th:object="${patient}" method="post">
-        <div class="row">
-            <div class="col-lg-3">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Patient</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class=" col-md-6 col-lg-6 ">
-                                    <table class="table table-user-information">
-                                        <tbody>
-                                            <tr>
-                                                <td> <b>Personal Information</b></td>
-                                                <td></td>
-                                            </tr>
+<div th:fragment = "patient_form">
+    <form class="row" id="patient_form" action="#" th:action="@{/store_patient}" th:object="${patient}" method="post">
+        <div th:insert = ":: patient_profile" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3">
+        </div>
         
-                                        <tr>
-                                            <td>First Name:</td>
-                                            <td>
-                                                <input placeholder="First Name" name="first_name" type="text" th:field="*{first_name}" />
-                                            </td>                                   
-                                        </tr>
-                                        <tr>
-                                            <td>Last Name:</td>
-                                            <td>
-                                                <input placeholder="Last Name" name="last_name" type="text" th:field="*{last_name}" />
-                                            </td>  
-                                        <tr>
-        
-                                        </tr>
-        
-                                        <tr>
-                                            <td>DOB:</td>
-                                            <td>
-                                                <input type="date" name="DOB" th:field = "*{DOB}">
-                                            </td>
-                                        </tr>
-        
-                                        <tr>
-                                            <td>Weight:</td>
-                                            <td>
-                                                <input placeholder="Weight" name="weight" type="number" th:field="*{weight}" />
-                                            </td>
-                                        </tr>
-        
-                                        <tr>
-                                            <td>height(in):</td>
-                                            <td>
-                                                <input placeholder="height" name="height" type="number" th:field="*{height}" />
-                                            </td>
-                                        </tr>
-        
-                                        <tr>
-                                            <td>Gender:</td>
-                                            <td> M</td>
-                                        </tr>
-        
-                                        <tr>
-                                            <td>Address:</td>
-                                            <td>
-                                                <input placeholder="Address" name="address" type="text"  />
-                                            </td>
-                                        </tr>
-        
-                                        <tr>
-                                            <td>Mobile:</td>
-                                            <td>
-                                                <input placeholder="Phone Number" name="phone_number" type="text" th:field="*{phone_number}" />
-                                            </td>
-                                        </tr>
-        
-                                        <tr>
-                                            <td>SSN:</td>
-                                            <td>
-                                                <input placeholder="SSN" name="SSN" type="text" th:field="*{ssn}" />
-                                            </td>
-                                        </tr>
-        
-                                        <tr>
-                                        <td>Marital Status:</td>
-                                        <td> Single </td>
-                                        </tr>
-        
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            
-            <div class="col-lg-3" style="margin-left: 70px" th:object="${insurance}">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Insurance</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class=" col-md-9 col-lg-9 ">
-                                <table class="table table-user-information">
-                                    <tbody>
-                                    <tr>
-                                        <td> <b>Insurance Information</b></td>
-                                        <td></td>
-                                    </tr>
-    
-                                    <tr>
-                                    <td>Insurer:</td>
-                                    <td>
-                                        <input placeholder="Company Name" name="company_name" type="text" th:field="*{insurance_name}" />
-                                    </td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>Group Number:</td>
-                                    <td>
-                                        <input placeholder="Group Number" name="group_number" type="text" th:field="*{group_number}" />
-                                    </td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>PCP:</td>
-                                    <td>
-                                        <input placeholder="PCP" name="pcp" type="text" th:field="*{pcp}" />
-                                    </td>
-                                    </tr>
-
-                                    <tr>
-                                    <td>Effective Date:</td>
-                                    <td>
-                                        <input placeholder="Effective until" name="expiration_date" type="date" th:field="*{effective_date}" />
-                                    </td>
-                                    </tr>
-    
-                                    <tr>
-                                    <td>Insurance Number:</td>
-                                    <td>
-                                        <input placeholder="Inusrance Number" name="insurance_number" type="text" th:field="*{insurance_number}" />
-                                    </td>
-                                    </tr>
-    
-                                    
-    
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3" style="margin-left: 70px; max-height: 500px; min-width: 200px; overflow-y:auto; " th:object=${conditions}>
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Medical History</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class=" col-md-9 col-lg-9 ">
-                                    <table class="table table-user-information">
-                                        <tbody id = "table_body">
-                                        <tr>
-                                            <td style="height: 73px"> <b>Illnesses</b></td>
-                                            <td><span class="btn btn-primary" style="border-radius: 50%;" onclick="add_fields();"><i class="fa fa-plus"></i></span></td>
-                                        </tr>
-                                        
-                                        <div th:each = "condition : ${conditions}">
-                                            <tr>
-                                                <td>Type:</td>
-                                                <td>
-                                                    <input placeholder="Type" name="type_of_illness" type="text"  />
-                                                </td>
-                                            </tr>
-            
-                                            <tr>
-                                                <td>Name:</td>
-                                                <td>
-                                                    <input placeholder="Name" name="name_of_illness" type="text" />
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>description:</td>
-                                                <td>
-                                                    <input placeholder="Description" name="description" type="text" />
-                                                </td>
-                                            </tr>
-                                        </div>
-                                        
-        
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-
+        <div th:insert = ":: insurance_info" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
         </div>
 
-        <input class="btn btn-success" type="submit" value="Submit" /> 
+        <div id="medical_history" th:insert = ":: medical_history" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+        </div> 
     </form>
+    <button class="btn btn-success" onclick="document.getElementById('patient_form').submit();">Submit</button>   
+
+
+    <script th:replace=":: jscode"></script>
 </div>
+
+<div th:fragment = "patient_profile" class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Patient</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class=" col-md-6 col-lg-6 ">
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td> <b>Personal Information</b></td>
+                                <td></td>
+                            </tr>
+
+                        <tr>
+                            <td>First Name:</td>
+                            <td>
+                                <input placeholder="First Name" name="first_name" type="text" th:field="*{first_name}" />
+                            </td>                                   
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td>
+                                <input placeholder="Last Name" name="last_name" type="text" th:field="*{last_name}" />
+                            </td>  
+                        <tr>
+
+                        </tr>
+
+                        <tr>
+                            <td>DOB:</td>
+                            <td>
+                                <input type="date" name="DOB" th:field = "*{DOB}">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Weight:</td>
+                            <td>
+                                <input placeholder="Weight" name="weight" type="number" th:field="*{weight}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>height(in):</td>
+                            <td>
+                                <input placeholder="height" name="height" type="number" th:field="*{height}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Gender:</td>
+                            <td> M</td>
+                        </tr>
+
+                        <tr>
+                            <td>Address:</td>
+                            <td>
+                                <input placeholder="Address" name="address" type="text"  />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Mobile:</td>
+                            <td>
+                                <input placeholder="Phone Number" name="phone_number" type="text" th:field="*{phone_number}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>SSN:</td>
+                            <td>
+                                <input placeholder="SSN" name="SSN" type="text" th:field="*{ssn}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                        <td>Marital Status:</td>
+                        <td> Single </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div th:fragment = "insurance_info" class="panel panel-info" th:object="${insurance}">
+    <div class="panel-heading">
+        <h3 class="panel-title">Insurance</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                    <tbody>
+                    <tr>
+                        <td> <b>Insurance Information</b></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                    <td>Insurer:</td>
+                    <td>
+                        <input placeholder="Company Name" name="company_name" type="text" th:field="*{insurance_name}" />
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td>Group Number:</td>
+                    <td>
+                        <input placeholder="Group Number" name="group_number" type="text" th:field="*{group_number}" />
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td>PCP:</td>
+                    <td>
+                        <input placeholder="PCP" name="pcp" type="text" th:field="*{pcp}" />
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td>Effective Date:</td>
+                    <td>
+                        <input placeholder="Effective until" name="expiration_date" type="date" th:field="*{effective_date}" />
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td>Insurance Number:</td>
+                    <td>
+                        <input placeholder="Inusrance Number" name="insurance_number" type="text" th:field="*{insurance_number}" />
+                    </td>
+                    </tr>
+
+                    
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment = "medical_history" class="panel panel-info" style="max-height: 500px; min-width: 200px; overflow-y:auto; " th:object=${conditions}>
+    <div class="panel-heading">
+        <h3 class="panel-title">Medical History</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                    <tbody id = "table_body">
+                    <tr>
+                        <td style="height: 73px"> <b>Illnesses</b></td>
+                        <td><span class="btn btn-primary" style="border-radius: 50%;"  onclick="add_conditions();"><i class="fa fa-plus"></i></span></td>
+                    </tr>
+                    
+                    <div th:each = "condition, itemStat : *{conditionsWrapper}">
+                        <tr>
+                            <td>Type:</td>
+                            <td>
+                                <input placeholder="Type" name="type_of_illness" type="text" th:field="*{conditionsWrapper[__${itemStat.index}__].type}"  />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Name:</td>
+                            <td>
+                                <input placeholder="Name" name="name_of_illness" type="text" th:field="*{conditionsWrapper[__${itemStat.index}__].name}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>description:</td>
+                            <td>
+                                <input placeholder="Description" name="description" type="text" th:field="*{conditionsWrapper[__${itemStat.index}__].description}" />
+                            </td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="jscode" th:inline="javascript">
+
+    /*<![CDATA[*/
+    
+
+    var conditions = /*[[${conditions.conditionsWrapper}]]*/ null;
+
+    
+    
+
+    function add_conditions() {
+        $.ajax({
+            url: "/add_conditions",
+            data: {
+                conditions: conditions                
+            },
+            success: function( result ) {
+                $( "#medical_history" ).html(result);
+            }
+        }); 
+    }
+
+    /*]]>*/
+
+</script>
