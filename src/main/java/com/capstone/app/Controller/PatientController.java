@@ -53,7 +53,7 @@ public class PatientController {
 	@RequestMapping(value = "/store_patient", method = RequestMethod.POST)
 	public String store(@ModelAttribute Patient pat, @ModelAttribute Insurance insurance, @ModelAttribute ConditionsWrapper conditions) {
 		
-		System.out.println(conditions.getConditionsList().get(0).getName());
+		//System.out.println(conditions.getConditionsList().get(0).getName());
 		
 		/*for (Conditions condition : conditions.getConditionsList()) {
 			if (!condition.getName().equals(null) && !condition.getType().equals(null) && condition.getDescription().equals(null)) {

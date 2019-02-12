@@ -1,5 +1,7 @@
 package com.capstone.app.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import com.capstone.app.Wrappers.ConditionsWrapper;
 @Controller
 public class ConditionsController {
 	
+	long num_attr = 1;
+	
 	@Autowired
 	ConditionsDAO conditionsDAO;
 	
@@ -37,10 +41,14 @@ public class ConditionsController {
 	}
 	
 	@RequestMapping(value = "/add_conditions", method = RequestMethod.GET)
-	public String show(Model model, @RequestParam(name="conditions") ConditionsWrapper conditions) {
+	public String show(Model model, @ModelAttribute ConditionsWrapper conditions) {
 		
-		System.out.println(conditions.getConditionsList().size());
-		conditions.addCondition(new Conditions());
+		num_attr++;
+
+		for (int i = 0; i < num_attr; i++) {
+			conditions.addCondition(new Conditions());
+		}
+		
 		
 		model.addAttribute("conditions", conditions);
 		return "patient/patient_form :: medical_history";
