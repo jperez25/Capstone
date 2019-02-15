@@ -44,7 +44,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES (1,'2019-02-02',9,17,NULL,'descriptiopn',NULL,0,''),(2,'2019-02-02',10,2,NULL,'description',NULL,NULL,NULL),(3,'2019-02-03',9,2,NULL,'description',NULL,NULL,NULL),(4,'2019-02-04',9,1,NULL,'description',NULL,0,''),(5,'2019-02-04',10,1,NULL,'des',NULL,NULL,NULL);
+INSERT INTO `appointment` VALUES (1,'2019-02-02',9,1,NULL,'descriptiopn',NULL,0,''),(2,'2019-02-02',10,2,NULL,'description',NULL,NULL,NULL),(3,'2019-02-03',9,2,NULL,'description',NULL,NULL,NULL),(5,'2019-02-04',10,1,NULL,'des',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -91,7 +91,7 @@ CREATE TABLE `appointments_per_patient` (
 
 LOCK TABLES `appointments_per_patient` WRITE;
 /*!40000 ALTER TABLE `appointments_per_patient` DISABLE KEYS */;
-INSERT INTO `appointments_per_patient` VALUES (1,1,1),(4,1,4),(5,0,4),(6,0,5);
+INSERT INTO `appointments_per_patient` VALUES (1,1,1),(6,0,5);
 /*!40000 ALTER TABLE `appointments_per_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +184,7 @@ CREATE TABLE `insurance` (
   `effective_date` date DEFAULT NULL,
   `insurance_number` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,6 +193,7 @@ CREATE TABLE `insurance` (
 
 LOCK TABLES `insurance` WRITE;
 /*!40000 ALTER TABLE `insurance` DISABLE KEYS */;
+INSERT INTO `insurance` VALUES (0,'test','tst7357','test',NULL,'1234567890');
 /*!40000 ALTER TABLE `insurance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,16 +288,16 @@ CREATE TABLE `patient` (
   `ssn` varchar(45) DEFAULT NULL,
   `DOB` date DEFAULT NULL,
   `phone_number` varchar(13) DEFAULT NULL,
-  `insurance` int(11) DEFAULT NULL,
+  `insurance` int(11) DEFAULT '0',
   `address` varchar(200) DEFAULT NULL,
-  `marital status` int(11) DEFAULT NULL,
+  `marital_status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `eye_idx` (`eye_colour`),
   KEY `insurance_idx` (`insurance`),
-  KEY `marital_status_idx` (`marital status`),
+  KEY `marital_status_idx` (`marital_status`),
   CONSTRAINT `eye` FOREIGN KEY (`eye_colour`) REFERENCES `eye` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `insurance` FOREIGN KEY (`insurance`) REFERENCES `insurance` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `marital_status` FOREIGN KEY (`marital status`) REFERENCES `marital_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `marital_status` FOREIGN KEY (`marital_status`) REFERENCES `marital_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -306,7 +307,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (0,'set','set',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,'Jovanny','Perez','170','68',NULL,1,'111224444','1996-08-24',NULL,NULL,NULL,NULL),(3,'Jovanny2','Perez','170.0','68.0',NULL,1,'123456789','1996-08-24','3312289037',NULL,NULL,NULL);
+INSERT INTO `patient` VALUES (0,'set','set','0','0',0,1,'111111111',NULL,NULL,0,NULL,1),(1,'Jovanny','Perez','170','68',0,1,'111224444','1996-08-24','3312289037',0,NULL,1),(3,'Jovanny2','Perez','170.0','68.0',0,1,'123456789','1996-08-24','3312289037',0,NULL,1);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -495,4 +496,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-08 11:47:17
+-- Dump completed on 2019-02-10 20:29:54

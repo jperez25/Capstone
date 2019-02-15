@@ -1,71 +1,130 @@
-        <div th:fragment="patient_info" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+<div th:fragment = "patient_info" class="row">
+  <div th:insert = ":: patient_information" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3">
+  </div>
+  
+  <div th:insert = ":: insurance_info" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+  </div>
+</div>
 
 
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">Patient Profile</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class=" col-md-9 col-lg-9 ">
-                  <table class="table table-user-information">
-                    <tbody>
+<div th:fragment="patient_information" class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Patient Profile</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class=" col-md-9 col-lg-9 ">
+        <table class="table table-user-information">
+          <tbody>
+          <tr>
+            <td> <b>Personal Information: </b></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>Patient Name:</td>
+            <td th:text="${patient.first_name + ' ' + patient.last_name}" > </td>
+          </tr>
+
+          <tr>
+            <td>Age:</td>
+            <td th:text="${age}"></td>
+          </tr>
+
+          <tr>
+              <td>Weight:</td>
+              <td th:text="${patient.weight}"></td>
+          </tr>
+
+          <tr>
+              <td>height:</td>
+              <td th:text="${patient.height} + ' in'"></td>
+          </tr>
+
+          <tr>
+            <td>Gender:</td>
+            <td th:if="${patient.gender == 0}">Male</td>
+            <td th:unless="${patient.gender == 0}">Female</td>
+          </tr>
+
+          <tr>
+            <td>Eye Colour:</td>            
+            <td th:if="${patient.eye_colour == 1}">Blue</td>
+          </tr>
+
+          <tr>
+            <td>Address:</td>
+            <td>Place</td>
+          </tr>
+
+          <tr>
+            <td>Mobile:</td>
+            <td th:text="${patient.phone_number}" ></td>
+          </tr>
+
+          <tr>
+              <td>SSN:</td>
+              <td th:text="${patient.ssn}"> </td>
+          </tr>
+
+          <tr>
+            <td>Marital Status:</td>
+            <td th:if="${patient.marital_status == 1}">Single</td>
+            <td th:if="${patient.marital_status == 2}">Married</td>
+            <td th:if="${patient.marital_status == 3}">Widowed</td>
+            <td th:if="${patient.marital_status == 4}">Divorced</td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div th:fragment="insurance_info" class="panel panel-info">
+  <div class="panel-heading">
+      <h3 class="panel-title">Insurance</h3>
+  </div>
+  <div class="panel-body">
+      <div class="row">
+          <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                  <tbody>
                     <tr>
-                      <td> <b>Personal Information: </b></td>
-                      <td></td>
+                        <td> <b>Insurance Information</b></td>
+                        <td></td>
                     </tr>
 
                     <tr>
-                      <td>Patient Name:</td>
-                      <td th:text="${patient.first_name + ' ' + patient.last_name}" > </td>
+                      <td>Insurer:</td>
+                      <td th:text="${pat_insurance.insurance_name}"></td>
                     </tr>
 
                     <tr>
-                      <td>Age:</td>
-                      <td th:text="${age}"></td>
+                      <td>Group Number:</td>
+                      <td th:text="${pat_insurance.group_number}"></td>
                     </tr>
 
                     <tr>
-                        <td>Weight:</td>
-                        <td th:text="${patient.weight}"></td>
+                    <td>PCP:</td>
+                    <td th:text="${pat_insurance.pcp}"></td>
                     </tr>
 
                     <tr>
-                        <td>height:</td>
-                        <td th:text="${patient.height} + ' in'"></td>
+                      <td>Effective Date:</td>
+                      <td th:text="${pat_insurance.effective_date}"></td>
                     </tr>
 
                     <tr>
-                      <td>Gender:</td>
-                      <td> M</td>
+                      <td>Insurance Number:</td>
+                      <td th:text="${pat_insurance.insurance_number}"></td>
                     </tr>
-
-                    <tr>
-                      <td>Address:</td>
-                      <td>Place</td>
-                    </tr>
-
-                    <tr>
-                      <td>Mobile:</td>
-                      <td th:text="${patient.phone_number}" ></td>
-                    </tr>
-
-                    <tr>
-                        <td>SSN:</td>
-                        <td th:text="${patient.ssn}"> </td>
-                    </tr>
-
-                    <tr>
-                      <td>Marital Status:</td>
-                      <td> Single </td>
-                    </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-
+                  </tbody>
+              </table>
           </div>
-        </div>
+      </div>
+  </div>
+</div>

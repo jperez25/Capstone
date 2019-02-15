@@ -7,8 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Patient {
-	
-	
 
 
 	@Id
@@ -18,43 +16,34 @@ public class Patient {
 	private String last_name;
 	private double weight;
 	private double height;
+	private int gender;
 	private int eye_colour;
 	private String ssn;
 	private String DOB;
 	private String phone_number;
-	private String insurance;
+	private long insurance;
+	private String address;
+	private int marital_status;
 	
 	public  Patient() {}
 
-	public Patient(String first_name, String last_name, double weight, double height, int eye_colour, String ssn,
-			String dOB, String phone_number, String insurance) {
+	public Patient(String first_name, String last_name, double weight, double height, int gender, int eye_colour,
+			String ssn, String dOB, String phone_number, long insurance, String address, int marital_status) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.weight = weight;
 		this.height = height;
+		this.gender = gender;
 		this.eye_colour = eye_colour;
 		this.ssn = ssn;
-		this.DOB = dOB;
+		DOB = dOB;
 		this.phone_number = phone_number;
 		this.insurance = insurance;
+		this.address = address;
+		this.marital_status = marital_status;
 	}
 	
-	
-	public Patient(int id, String first_name, String last_name, double weight, double height, int eye_colour,
-			String ssn, String dOB, String phone_number, String insurance) {
-		super();
-		this.id = id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.weight = weight;
-		this.height = height;
-		this.eye_colour = eye_colour;
-		this.ssn = ssn;
-		this.DOB = dOB;
-		this.phone_number = phone_number;
-		this.insurance = insurance;
-	}
 
 	public int getId() {
 		return id;
@@ -128,12 +117,37 @@ public class Patient {
 		this.phone_number = phone_number;
 	}
 
-	public String getInsurance() {
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getMarital_status() {
+		return marital_status;
+	}
+
+	public void setMarital_status(int marital_status) {
+		this.marital_status = marital_status;
+	}
+
+	public void setInsurance(long insurance) {
+		this.insurance = insurance;
+	}
+
+	public long getInsurance() {
 		return insurance;
 	}
 
-	public void setInsurance(String insurance) {
-		this.insurance = insurance;
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 	
 	

@@ -66,8 +66,6 @@ public class CalendarController {
 			Date endtime = null;
 			try {
 				int endhour = app.getHour()+app.getDuration();
-				System.out.println(app.getDate());
-				System.out.println(app.getHour());
 				day = sdf.parse(app.getDate()+"T"+Integer.toString(app.getHour()-8)+":00-0800");
 				endtime = sdf.parse(app.getDate()+"T"+Integer.toString(endhour-8)+":00-0800");
 			} catch (ParseException e) {
