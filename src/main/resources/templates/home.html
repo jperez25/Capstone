@@ -11,10 +11,12 @@
 
       
       <!-- Sidebar -->
-      <div id="sidebar" class="sidebar-offcanvas">
+      <div id="sidebar" class="sidebar-offcanvas" >
           <div class="col-sm-12">
             <h3>Patients</h3>
-              <input class="form-control mr-sm-2" type="text" id="patient_search" onkeyup="get_Patients(document.getElementById('patient_search').value)" placeholder="Last Name" aria-label="Search">              
+              <input class="form-control mr-sm-2" type="text" id="patient_search" onkeyup="get_Patients(document.getElementById('patient_search').value)" placeholder="Last Name" aria-label="Search">
+              <input id="search_type_id" type="radio" name="search_type" value="id"> Id
+              <input type="radio" checked="checked" name="search_type" value="last_name"> Last Name
               <div id="patients"></div>
           </div>
         </div>
@@ -28,7 +30,9 @@
               
           </div>
         </div>
-      </main><!-- /.container -->
+      </main><!-- /.container -->      
+
+      <div th:replace="layouts/footer :: footer"></div>
     
 
 

@@ -3,15 +3,29 @@
 function get_Patients(last_name) {
     //console.log(last_name);
     
-    $.ajax({
-        url: "/get_patients",
-        data: {
-            last_name: last_name
-        },
-        success: function( result ) {
-            $( "#patients" ).html( "<strong>" + result + "</strong> " );
-        }
-        });      
+    var radio_button_id = document.getElementById("search_type_id");
+    if (radio_button_id.checked) {
+        $.ajax({
+            url: "/get_patients_by_id",
+            data: {
+                last_name: last_name
+            },
+            success: function( result ) {
+                $( "#patients" ).html( "<strong>" + result + "</strong> " );
+            }
+        });  
+    }
+    else{
+        $.ajax({
+            url: "/get_patients_by_last_name",
+            data: {
+                last_name: last_name
+            },
+            success: function( result ) {
+                $( "#patients" ).html( "<strong>" + result + "</strong> " );
+            }
+        });  
+    }    
   }
 
 function get_patient(patient_id) {

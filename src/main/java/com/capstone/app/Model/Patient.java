@@ -1,5 +1,8 @@
 package com.capstone.app.Model;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -150,6 +153,27 @@ public class Patient {
 		this.gender = gender;
 	}
 	
+	public static int calculateAge(String DOB) {
+		
+		//get patients DOB
+    	String[] DOBArray = DOB.split("-");
+    	int day = Integer.parseInt(DOBArray[2]); 
+    	int month = Integer.parseInt(DOBArray[1]); 
+    	int year = Integer.parseInt(DOBArray[0]); 
+    	
+    	// use for age-calculation: LocalDate.now()
+    	String[] todaysDay = LocalDate.now().toString().split("-"); 
+    	int today = Integer.parseInt(todaysDay[2]);
+    	int currentMonth = Integer.parseInt(todaysDay[1]);
+    	int currentYear = Integer.parseInt(todaysDay[0]);
+    	
+    	//calculate age
+    	LocalDate start = LocalDate.of(year,month,day);
+    	LocalDate end = LocalDate.of(currentYear, currentMonth, today); 
+    	int years = (int)ChronoUnit.YEARS.between(start, end);
+		
+		return years;
+	}
 	
 
 }
