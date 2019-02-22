@@ -6,7 +6,7 @@ public class EncryptedPasswordUtils {
  
     // Encrypt Password with BCryptPasswordEncoder
     public static String encrytePassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();        
         return encoder.encode(password);
     }
  

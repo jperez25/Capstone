@@ -149,8 +149,8 @@
                     <th scope="col">Room</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr th:each ="patient, index: ${patients}">
+                <tbody >
+                  <trth:if="${patients.size()} > 0" th:each ="patient, index: ${patients}">
                       <th scope="row" th:text="${apps[index.index].date}"></th>
                       <th th:text="${patient.first_name} + ' ' + ${patient.last_name}"></th>
                       <th th:text="${patient.DOB}"></th>
@@ -160,7 +160,7 @@
                       <th th:text="${patient.phone_number}"></th>
                       <th  th:text="${apps[index.index].purpose}"></th>
                       <th  th:text="${apps[index.index].description}"></th>
-                      
+
                       <th  th:text="${apps[index.index].doctor}"></th>
                       <th  th:text="${index.index}"></th>
 

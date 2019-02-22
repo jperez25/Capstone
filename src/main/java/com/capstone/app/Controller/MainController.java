@@ -83,11 +83,11 @@ public class MainController {
     	List<Patient> pats = new ArrayList<Patient>();
     	
     	List<Integer> ages = new ArrayList<Integer>(); 
-    	
+    		
     	for(Appointment appt : appo){
     		pats.add(patientDAO.getPatientByID( Long.toString(apptPerPatDAO.getPatientIdByApptId( appt.getId()).getPatientId()) ));
     	}
-    	
+    	    		
     	for(Patient pat : pats) {
     		ages.add(Patient.calculateAge(pat.getDOB()));
     	}
