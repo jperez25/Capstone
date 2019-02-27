@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "appointment")
 public class Appointment {
 
-
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -18,18 +17,23 @@ public class Appointment {
     private String date;
     private int hour;
     private int duration;
-    private String description; 
+    private String doctor;
+    private String description;
+    private String purpose;
     private String attendance;
     private String diagnostics;
     
     public Appointment() {}
     
-    public Appointment(String date, int hour, int duration, String description, String attendance, String diagnostics) {
+	public Appointment(String date, int hour, int duration, String doctor, String description, String purpose,
+			String attendance, String diagnostics) {
 		super();
 		this.date = date;
 		this.hour = hour;
 		this.duration = duration;
+		this.doctor = doctor;
 		this.description = description;
+		this.purpose = purpose;
 		this.attendance = attendance;
 		this.diagnostics = diagnostics;
 	}
@@ -88,6 +92,22 @@ public class Appointment {
 
 	public void setDiagnostics(String diagnostics) {
 		this.diagnostics = diagnostics;
+	}
+
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
     
     

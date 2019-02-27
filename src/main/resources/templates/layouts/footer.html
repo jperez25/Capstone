@@ -130,21 +130,44 @@
       </section>
     
       <!-- Footer -->
-      <footer>
-        <div class="container">
+      <footer th:fragment="footer" style="max-height: 200px; min-height: 200px; overflow-y: auto;">
+        
           <div class="row">
             <div class="col-md-12">
-              <p>Copyright &copy; Alstar. All rights reserved.</p>
-              <div class="credits">
-                <!--
-                  All the links in the footer should remain intact.
-                  You can delete the links only if you purchased the pro version.
-                  Licensing information: https://bootstrapmade.com/license/
-                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Alstar
-                -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
+              <table class="table table-striped sticky-header" >
+                <thead style="background-color: red;">
+                  <tr>
+                    <th scope="col">Appointment</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Contact Phone</th>
+                    <th scope="col">Visit Type</th>
+                    <th scope="col">Visit Reason</th>
+                    <th scope="col">Provider</th>
+                    <th scope="col">Room</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <trth:if="${patients.size()} > 0" th:each ="patient, index: ${patients}">
+                      <th scope="row" th:text="${apps[index.index].date}"></th>
+                      <th th:text="${patient.first_name} + ' ' + ${patient.last_name}"></th>
+                      <th th:text="${patient.DOB}"></th>
+                      <th th:text="${ages[index.index]}"></th>
+                      <th th:if=" ${patient.gender} == '0'" > Male</th>
+                      <th th:unless=" ${patient.gender} == '0'" > Female</th>
+                      <th th:text="${patient.phone_number}"></th>
+                      <th  th:text="${apps[index.index].purpose}"></th>
+                      <th  th:text="${apps[index.index].description}"></th>
+
+                      <th  th:text="${apps[index.index].doctor}"></th>
+                      <th  th:text="${index.index}"></th>
+
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-        </div>
+        
       </footer>
