@@ -150,13 +150,13 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <trth:if="${patients.size()} > 0" th:each ="patient, index: ${patients}">
+                  <tr th:if="${patients.size()} > 0" th:each ="patient, index: ${patients}">
                       <th scope="row" th:text="${apps[index.index].date}"></th>
                       <th th:text="${patient.first_name} + ' ' + ${patient.last_name}"></th>
                       <th th:text="${patient.DOB}"></th>
                       <th th:text="${ages[index.index]}"></th>
-                      <th th:if=" ${patient.gender} == '0'" > Male</th>
-                      <th th:unless=" ${patient.gender} == '0'" > Female</th>
+                      <th th:if=" ${patient.gender} == 0" > Male</th>
+                      <th th:unless=" ${patient.gender} == 0" > Female</th>
                       <th th:text="${patient.phone_number}"></th>
                       <th  th:text="${apps[index.index].purpose}"></th>
                       <th  th:text="${apps[index.index].description}"></th>
