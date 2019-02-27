@@ -1,8 +1,8 @@
 <div th:fragment = "all_pat_info" class="row">
-        <div th:replace = ":: patient_profile" class="col-lg-4">
+        <div th:insert = ":: patient_profile" class="col-lg-4">
         </div>
         
-        <div th:replace = ":: insurance_info" class="col-lg-4" style="margin-left: 50px">
+        <div th:insert = ":: insurance_info" class="col-lg-4" >
         </div>
 </div>
 
