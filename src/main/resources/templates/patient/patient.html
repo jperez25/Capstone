@@ -10,6 +10,8 @@
 
   <div th:insert = ":: medical_history" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
   </div>
+
+  <button class="btn btn-success" th:onclick="edit_patient(1)">Edit patient</button>
 </div>
 
 
@@ -98,28 +100,28 @@
         <div class="row">
             <div class=" col-md-9 col-lg-9 ">
                 <table class="table table-user-information">
-                    <tbody>
+                    <tbody th:each = "contact: ${contacts} ">
                     <tr>
                         <td> <b>Person 1</b></td>
                         <td></td>
                     </tr>
                     <tr>
                       <td>Name:</td>
-                      <td> </td>
+                      <td th:text = "${contact.name}"></td>
                     </tr>
                     <tr>
                       <td>Relationship:</td>
-                      <td> </td>
+                      <td th:text = "${contact.relationship}"></td>
                     </tr>
   
                     <tr>
                       <td>Address:</td>
-                      <td></td>
+                      <td th:text = "${contact.address}"></td>
                     </tr>
           
                     <tr>
                       <td>Mobile:</td>
-                      <td></td>
+                      <td th:text = "${contact.mobile}"></td>
                     </tr>
                     </tbody>
                 </table>

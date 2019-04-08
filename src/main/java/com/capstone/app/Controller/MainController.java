@@ -18,17 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.DAO.AppointmentDAO;
 import com.capstone.app.DAO.AppointmetsPerPatientDAO;
+import com.capstone.app.DAO.EmergencyContactDAO;
 import com.capstone.app.DAO.InsuranceDAO;
 import com.capstone.app.DAO.OfficeDAO;
 import com.capstone.app.DAO.PatientDAO;
 import com.capstone.app.DAO.UserDAO;
 import com.capstone.app.Model.Appointment;
+import com.capstone.app.Model.Emergency_contacts;
 import com.capstone.app.Model.Insurance;
 import com.capstone.app.Model.Patient;
 import com.capstone.app.Utils.WebUtils;
  
 @Controller
 public class MainController {
+	
 	@Autowired
 	OfficeDAO OfficeDAO;
 	
@@ -43,6 +46,9 @@ public class MainController {
 	
 	@Autowired
 	AppointmetsPerPatientDAO apptPerPatDAO;
+	
+	@Autowired
+	EmergencyContactDAO emerContcDAO;
 	
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
@@ -164,6 +170,8 @@ public class MainController {
     	
     	Patient pat =  patientDAO.getPatientById(patient_id);
     	
+    	List<Emergency_contacts> contacts = emerContcDAO.get_emer_contact_by_pat_id(Integer.valueOf(patient_id) );
+    	
     	Insurance pat_insurance = insuranceDAO.getInsuranceById(pat.getInsurance());
     	
     	int years = Patient.calculateAge(pat.getDOB());
@@ -172,6 +180,7 @@ public class MainController {
     	model.addAttribute("patient", pat );
     	model.addAttribute("age", years);
     	model.addAttribute("pat_insurance", pat_insurance);
+    	model.addAttribute("contacts",contacts);
     	
         return "patient\\patient :: patient_info";
     }

@@ -1,0 +1,253 @@
+<div th:fragment = "edit_patient_form" class="row">
+        <div th:insert = ":: patient_information" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3">
+        </div>
+      
+        <div th:insert = ":: emergency_contact" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+        </div>
+        
+        <div th:insert = ":: insurance_info" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+        </div>
+      
+        <div th:insert = ":: medical_history" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+        </div>
+      
+        <button class="btn btn-success">Save</button>
+        <button class="btn btn-success" th:onclick="'javascript:get_patient(\''+ ${patient.id} +'\');'">Cancel</button>
+</div>
+      
+      
+      <div th:fragment="patient_information" class="panel panel-info" th:object="${patient}">
+        <div class="panel-heading">
+          <h3 class="panel-title">Patient Profile</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td> <b>Personal Information: </b></td>
+                  <td></td>
+                </tr>
+      
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input placeholder="First Name" name="first_name" type="text" th:field="*{first_name}" />
+                    </td>                                   
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input placeholder="Last Name" name="last_name" type="text" th:field="*{last_name}" />
+                    </td>  
+                <tr>
+
+                <tr>
+                    <td>DOB:</td>
+                    <td>
+                        <input type="date" name="DOB" th:field = "*{DOB}">
+                    </td>
+                </tr>
+      
+                <tr>
+                    <td>Weight:</td>
+                    <td>
+                        <input placeholder="Weight" name="weight" type="text" th:field="*{weight}">
+                    </td>
+                </tr>
+      
+                <tr>
+                    <td>height(in):</td>
+                    <td>
+                        <input placeholder="height" name="height" type="number" th:field="*{height}">
+                    </td>
+                </tr>
+      
+                <tr>
+                  <td>Gender:</td>
+                  <td>
+                    <select th:if="${patient.gender == 0}">
+                        <option selected="selected" th:value = 0 th:text="male"></option>
+                        <option th:value = 1 th:text="female"></option>
+                    </select>
+
+                    <select th:if="${patient.gender == 1}">
+                            <option th:value = 0 th:text="male"></option>
+                            <option selected="selected" th:value = 1 th:text="female"></option>
+                        </select>
+                  </td>
+                </tr>
+      
+                <tr>
+                  <td>Eye Colour:</td>            
+                  <td th:if="${patient.eye_colour == 1}">Blue</td>
+                </tr>
+      
+                <tr>
+                  <td>Address:</td>
+                  <td>
+                    <input type="text" th:text = "*{address}">
+                  </td>
+                </tr>
+      
+                <tr>
+                  <td>Mobile:</td>
+                  <td>
+                    <input type="text" th:field="*{phone_number}" >
+                  </td>
+                </tr>
+      
+                <tr>
+                    <td>SSN:</td>
+                    <td>
+                        <input type="text" th:field="${patient.ssn}">
+                    </td>
+                </tr>
+      
+                <tr>
+                  <td>Marital Status:</td>
+                  <td>
+                      <select th:if="${patient.marital_status == 1}">
+                          <option selected="selected" th:value = 1 th:text = "single"></option>
+                          <option th:value = 2 th:text = "Married"></option>
+                          <option th:value = 3 th:text = "Widowed"></option>
+                          <option th:value = 4 th:text = "Divorced"></option>
+                      </select>
+
+                      <select th:if="${patient.marital_status == 2}">
+                            <option th:value = 1 th:text = "single"></option>
+                            <option selected="selected" th:value = 2 th:text = "Married"></option>
+                            <option th:value = 3 th:text = "Widowed"></option>
+                            <option th:value = 4 th:text = "Divorced"></option>
+                      </select>
+
+                      <select th:if="${patient.marital_status == 3}">
+                            <option th:value = 1 th:text = "single"></option>
+                            <option th:value = 2 th:text = "Married"></option>
+                            <option selected="selected" th:value = 3 th:text = "Widowed"></option>
+                            <option th:value = 4 th:text = "Divorced"></option>
+                      </select>                      
+                      
+                      <select th:if="${patient.marital_status == 4}">
+                            <option th:value = 1 th:text = "single"></option>
+                            <option th:value = 2 th:text = "Married"></option>
+                            <option th:value = 3 th:text = "Widowed"></option>
+                            <option selected="selected" th:value = 4 th:text = "Divorced"></option>
+                      </select>
+
+                  </td>
+                </tr>
+      
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      
+      
+      </div>
+      
+      <div th:fragment = "emergency_contact" class="panel panel-info">
+          <div class="panel-heading">
+              <h3 class="panel-title">Emergency Contact</h3>
+          </div>
+          <div class="panel-body">
+              <div class="row">
+                  <div class=" col-md-9 col-lg-9 ">
+                      <table class="table table-user-information">
+                          <tbody th:each = "contact: ${contacts} ">
+                          <tr>
+                              <td> <b>Person 1</b></td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                            <td>Name:</td>
+                            <td th:text = "${contact.name}"></td>
+                          </tr>
+                          <tr>
+                            <td>Relationship:</td>
+                            <td th:text = "${contact.relationship}"></td>
+                          </tr>
+        
+                          <tr>
+                            <td>Address:</td>
+                            <td th:text = "${contact.address}"></td>
+                          </tr>
+                
+                          <tr>
+                            <td>Mobile:</td>
+                            <td th:text = "${contact.mobile}"></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+        </div>
+      
+      <div th:fragment="insurance_info" class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Insurance</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class=" col-md-9 col-lg-9 ">
+                    <table class="table table-user-information">
+                        <tbody>
+                          <tr>
+                              <td> <b>Insurance Information</b></td>
+                              <td></td>
+                          </tr>
+      
+                          <tr>
+                            <td>Insurer:</td>
+                            <td th:text="${pat_insurance.insurance_name}"></td>
+                          </tr>
+      
+                          <tr>
+                            <td>Group Number:</td>
+                            <td th:text="${pat_insurance.group_number}"></td>
+                          </tr>
+      
+                          <tr>
+                          <td>PCP:</td>
+                          <td th:text="${pat_insurance.pcp}"></td>
+                          </tr>
+      
+                          <tr>
+                            <td>Effective Date:</td>
+                            <td th:text="${pat_insurance.effective_date}"></td>
+                          </tr>
+      
+                          <tr>
+                            <td>Insurance Number:</td>
+                            <td th:text="${pat_insurance.insurance_number}"></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <div th:fragment = "medical_history" class="panel panel-info">
+          <div class="panel-heading">
+              <h3 class="panel-title">Medical History</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                  <tbody>
+                      <tr>
+                        <td> <b>Illnesess</b></td>
+                        <td></td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+      

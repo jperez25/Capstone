@@ -42,6 +42,20 @@ function get_patient(patient_id) {
     });
 }
 
+function edit_patient(patient_id) {
+    console.log(patient_id+"edit");
+    
+    $.ajax({
+        url: "/edit_patient",
+        data: {
+        patient_id: patient_id
+        },
+        success: function( result ) {
+        $( "#patient_info" ).html(  result );
+        }
+    });
+}
+
 function get_app_by_id(app_id) {
     console.log(app_id);
 
