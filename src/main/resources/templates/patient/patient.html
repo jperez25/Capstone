@@ -1,8 +1,14 @@
 <div th:fragment = "patient_info" class="row">
-  <div th:insert = ":: patient_information" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3">
+  <div th:insert = ":: patient_information" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3">
+  </div>
+
+  <div th:insert = ":: emergency_contact" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
   </div>
   
-  <div th:insert = ":: insurance_info" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+  <div th:insert = ":: insurance_info" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
+  </div>
+
+  <div th:insert = ":: medical_history" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
   </div>
 </div>
 
@@ -84,6 +90,44 @@
 
 </div>
 
+<div th:fragment = "emergency_contact" class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Emergency Contact</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                    <tbody>
+                    <tr>
+                        <td> <b>Person 1</b></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>Name:</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>Relationship:</td>
+                      <td> </td>
+                    </tr>
+  
+                    <tr>
+                      <td>Address:</td>
+                      <td></td>
+                    </tr>
+          
+                    <tr>
+                      <td>Mobile:</td>
+                      <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+
 <div th:fragment="insurance_info" class="panel panel-info">
   <div class="panel-heading">
       <h3 class="panel-title">Insurance</h3>
@@ -127,4 +171,24 @@
           </div>
       </div>
   </div>
+</div>
+
+<div th:fragment = "medical_history" class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Medical History</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-user-information">
+            <tbody>
+                <tr>
+                  <td> <b>Illnesess</b></td>
+                  <td></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 </div>

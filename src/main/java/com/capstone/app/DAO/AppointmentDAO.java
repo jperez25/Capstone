@@ -39,6 +39,17 @@ public class AppointmentDAO extends JdbcDaoSupport {
        return apps;
 	}
 	
+	public List<Appointment> getAllTodaysAppointments() {
+		
+		String sql = "SELECT * FROM appointment where appointment.date = curdate(); ";
+		   
+	   Object[] params = new Object[] {  };
+	   
+	   List<Appointment> apps = this.getJdbcTemplate().query(sql, params, new BeanPropertyRowMapper<Appointment>(Appointment.class));
+
+       return apps;
+	}
+	
 	public List<Appointment> getAllApoimentsByPatient(int id) {
 		String sql = "select * from appointment,"+
 							" (select * from appointments_per_patient where appointments_per_patient.patient_id = ?)"+

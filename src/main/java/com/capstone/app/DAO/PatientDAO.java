@@ -40,6 +40,34 @@ public class PatientDAO extends JdbcDaoSupport {
        return patients;
 	}
 	
+	
+	public List<Patient> getPatientsByID(String id) {
+		String sql = "Select * from patient where id like ?";
+		   
+	   Object[] params = new Object[] { id+"%" };
+	   
+	   if(id != "") {
+		  params = new Object[] { id+"%" };
+	   }
+	   else{
+		   params = new Object[] { id };
+	   }
+	   
+	   List<Patient> patients = this.getJdbcTemplate().query(sql, params, new BeanPropertyRowMapper<Patient>(Patient.class));
+
+       return patients;
+	}
+	
+	public Patient getPatientByID(String id) {
+		String sql = "Select * from patient where id = ?";
+		   
+	   Object[] params = new Object[] { id };
+	   
+	   Patient patient = this.getJdbcTemplate().queryForObject(sql, params, new BeanPropertyRowMapper<Patient>(Patient.class));
+
+       return patient;
+	}
+	
 	public Patient getPatientById(String id) {
 		
 		String sql = "Select * from patient where id = ?";
