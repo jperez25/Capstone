@@ -1,5 +1,8 @@
 package com.capstone.app.Model;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,8 +10,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Patient {
-	
-	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -16,34 +19,34 @@ public class Patient {
 	private String last_name;
 	private double weight;
 	private double height;
+	private int gender;
 	private int eye_colour;
 	private String ssn;
+	private String DOB;
+	private String phone_number;
+	private long insurance;
+	private String address;
+	private int marital_status;
 	
 	public  Patient() {}
-	
-	public Patient(String first_name, String last_name, double weight, double height, int eye_colour,
-			String ssn) {
+
+	public Patient(String first_name, String last_name, double weight, double height, int gender, int eye_colour,
+			String ssn, String dOB, String phone_number, long insurance, String address, int marital_status) {
 		super();
-		this.id = id;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.weight = weight;
 		this.height = height;
+		this.gender = gender;
 		this.eye_colour = eye_colour;
 		this.ssn = ssn;
+		this.DOB = dOB;
+		this.phone_number = phone_number;
+		this.insurance = insurance;
+		this.address = address;
+		this.marital_status = marital_status;
 	}
 	
-	public Patient(int id, String first_name, String last_name, double weight, double height, int eye_colour,
-			String ssn) {
-		super();
-		this.id = id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.weight = weight;
-		this.height = height;
-		this.eye_colour = eye_colour;
-		this.ssn = ssn;
-	}
 
 	public int getId() {
 		return id;
@@ -100,7 +103,77 @@ public class Patient {
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
+
+	public String getDOB() {
+		return this.DOB;
+	}
+
+	public void setDOB(String dOB) {
+		this.DOB = dOB;
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getMarital_status() {
+		return marital_status;
+	}
+
+	public void setMarital_status(int marital_status) {
+		this.marital_status = marital_status;
+	}
+
+	public void setInsurance(long insurance) {
+		this.insurance = insurance;
+	}
+
+	public long getInsurance() {
+		return insurance;
+	}
+
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
 	
+	public static int calculateAge(String DOB) {
+		
+		//get patients DOB
+    	String[] DOBArray = DOB.split("-");
+    	int day = Integer.parseInt(DOBArray[2]); 
+    	int month = Integer.parseInt(DOBArray[1]); 
+    	int year = Integer.parseInt(DOBArray[0]); 
+    	
+    	// use for age-calculation: LocalDate.now()
+    	String[] todaysDay = LocalDate.now().toString().split("-"); 
+    	int today = Integer.parseInt(todaysDay[2]);
+    	int currentMonth = Integer.parseInt(todaysDay[1]);
+    	int currentYear = Integer.parseInt(todaysDay[0]);
+    	
+    	//calculate age
+    	LocalDate start = LocalDate.of(year,month,day);
+    	LocalDate end = LocalDate.of(currentYear, currentMonth, today); 
+    	int years = (int)ChronoUnit.YEARS.between(start, end);
+		
+		return years;
+	}
 	
 
 }

@@ -23,17 +23,20 @@
 				header: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'month,agendaWeek,agendaDay,listWeek'
+					right: 'month,agendaWeek,agendaDay,listWeek',
+					allDay: 'true',
 				},
 				eventClick: function(calEvent, jsEvent, view) {
 
 					//alert('Event: ' + calEvent.title);
 					//alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 					//alert('View: ' + view.name);
+					console.log(calEvent.start.format('h:mm:ss a'));
 					get_app_by_id(calEvent.description);
 					$('#modalBox').modal('toggle');
 					$('#modalBox').modal('show');
 					// change the border color just for fun
+					
 					$(this).css('border-color', 'red');
 				},
 
@@ -60,8 +63,7 @@
 					$('#loading').toggle(bool);
 				}
 			});
-
-		});
+			});
 	</script>
 
 	<style>
@@ -79,10 +81,12 @@
 
 </head>
 
-<body>
+<body style="padding-top: 55px;">
+	<div th:replace="layouts/navbar2 :: nav"></div>
 	<div id='calendar'></div>
-	<h1 th:text="${apps.get(1).date}"></h1>
+
 	<div id='modal'></div>
-    
-</body>
+	<div id='modal_add'></div>
+
+	<button class="btn btn-outline-success" onclick='modalAdd()'>Add an appointment</button>
 </html>

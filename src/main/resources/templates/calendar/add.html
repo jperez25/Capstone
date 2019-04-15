@@ -1,0 +1,48 @@
+<div th:fragment = "add_event" id="modal_edit" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Appointment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form th:action="@{/calendar/store_event}" th:object="${appointment}" method="POST">
+          
+  			<div class="form-group">
+    			<label for="Patient_Name">Patient Name</label>
+    			<input type="text" class="form-control" id="patient" name="patient" placeholder="">
+ 			</div>
+ 				
+ 			<div class="form-group">
+    			<label for="doctor">Doctor Name</label>
+    			<input type="text" class="form-control" id="add_doctor" name = "doctor" placeholder="">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="text" class="form-control" id="start" name="start" placeholder="">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="text" class="form-control" id="duration" name="duration" placeholder="">
+ 			</div>
+  			
+  			<div class="form-group">
+    			<label for="Appointment">Date of Appointment</label>
+    			<input type="date" class="form-control" id="date" name="date" placeholder="">
+ 			</div>
+  			
+  			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
