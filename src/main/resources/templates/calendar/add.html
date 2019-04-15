@@ -10,39 +10,42 @@
         <div class="modal-body">
           <form th:action="@{/calendar/store_event}" th:object="${appointment}" method="POST">
           
-  			<div class="form-group">
-    			<label for="Patient_Name">Patient Name</label>
-    			<input type="text" class="form-control" id="patient" name="patient" placeholder="">
- 			</div>
- 				
- 			<div class="form-group">
-    			<label for="doctor">Doctor Name</label>
-    			<input type="text" class="form-control" id="add_doctor" name = "doctor" placeholder="">
- 			</div>
-  			
-  			<div class="form-group">
-    			<label for="Appointment">Date of Appointment</label>
-    			<input type="text" class="form-control" id="start" name="start" placeholder="">
- 			</div>
-  			
-  			<div class="form-group">
-    			<label for="Appointment">Date of Appointment</label>
-    			<input type="text" class="form-control" id="duration" name="duration" placeholder="">
- 			</div>
-  			
-  			<div class="form-group">
-    			<label for="Appointment">Date of Appointment</label>
-    			<input type="date" class="form-control" id="date" name="date" placeholder="">
- 			</div>
-  			
-  			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
-		
+						<div class="form-group">
+								<label for="Patient_Name">Patient Name</label>
+								<input type="text" class="form-control" id="patient" list="datalist" onkeyup="get_Patients_Modal(document.getElementById('patient').value)" name="patient" placeholder="Last Name" required>
+								<div id="list"></div>
+						</div>
+							
+						<div class="form-group">
+								<label for="doctor">Doctor Name</label>
+								<input type="text" class="form-control" id="add_doctor" name = "doctor" placeholder="" required>
+						</div>
+							
+							<div class="form-group">
+								<label for="Appointment">Starting time</label>
+								<input type="text" class="form-control" id="start" name="start" placeholder="" required>
+						</div>
+							
+							<div class="form-group">
+								<label for="Appointment">Ending Time</label>
+								<input type="text" class="form-control" id="duration" name="duration" placeholder="" required>
+						</div>
+							
+							<div class="form-group">
+								<label for="Appointment">Date of Appointment</label>
+								<input type="date" class="form-control" id="date" name="date" placeholder="" required>
+						</div>
+							
+							<button type="submit" class="btn btn-primary">Save</button>
+					</form>
+			
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-  </div>
+	</div>
+
+	<datalist th:fragment= "datalist" id="datalist">
+			<option th:each = "patient : ${patients}" th:value="${patient.first_name} + ' ' + ${patient.last_name}"></option>
+	</datalist>

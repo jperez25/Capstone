@@ -28,6 +28,20 @@ function get_Patients(last_name) {
     }    
   }
 
+  function get_Patients_Modal(last_name) {
+    //console.log(last_name);
+    $.ajax({
+        url: "/get_patients_by_last_name_modal",
+        data: {
+            last_name: last_name
+        },
+        success: function( result ) {
+            $( "#list" ).replaceWith( result );
+            console.log(last_name);
+        }
+    });   
+  }
+
 function get_patient(patient_id) {
     console.log(patient_id);
     
@@ -105,6 +119,24 @@ function add_fields() {
                     
  }
 
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    if(mm<10) {
+        mm = '0'+mm
+    } 
+
+    today = yyyy + '/' + mm + '/' + dd;
+    console.log(today);
+    document.getElementById("date").value = today;
+}
 
 (function($) {
     "use strict";

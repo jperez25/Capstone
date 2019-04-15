@@ -39,6 +39,9 @@ public class PatientController {
 	@Autowired
 	AppointmentDAO apps;
 	
+	@Autowired
+	ConditionsDAO conditionsDAO;
+	
 	
 	@Autowired
 	EmergencyContactDAO emerContcDAO;
@@ -69,16 +72,16 @@ public class PatientController {
 		
 		//System.out.println(conditions.getConditionsList().get(0).getName());
 		
-		/*for (Conditions condition : conditions.getConditionsList()) {
+		for (Conditions condition : conditions.getConditionsList()) {
 			if (!condition.getName().equals(null) && !condition.getType().equals(null) && condition.getDescription().equals(null)) {
 				conditionsDAO.newCondition(condition);
 			} else {
 				System.out.println("incomplete condition");
 			}
-		}*/
+		}
 		
-		//insuranceDAO.newInsurance(insurance);
-		//patientDAO.newPatient(pat);
+		insuranceDAO.newInsurance(insurance);
+		patientDAO.newPatient(pat);
 		
 		
 		

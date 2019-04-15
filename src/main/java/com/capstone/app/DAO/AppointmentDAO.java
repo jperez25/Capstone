@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.Model.Appointment;
-import com.capstone.app.Model.AppointmentsPerPatient;
 
 @Repository
 @Transactional

@@ -162,6 +162,16 @@ public class MainController {
     	
         return "patient\\patients :: patients";
     }
+
+    @RequestMapping(value = "/get_patients_by_last_name_modal", method = RequestMethod.GET)
+    public String showPatientsListModal(Model model, @RequestParam String last_name) {
+    	
+    	model.addAttribute("patients", patientDAO.getPatientsByName(last_name) );
+    	
+    	System.out.println(patientDAO.getPatientsByName(last_name).size());
+    	
+        return "calendar\\add :: datalist";
+    }
     
     @RequestMapping(value = "/get_patient", method = RequestMethod.GET)
     public String patient_info(Model model, @RequestParam String patient_id) {
