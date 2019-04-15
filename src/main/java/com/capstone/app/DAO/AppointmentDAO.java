@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.Model.Appointment;
+import com.capstone.app.Model.AppointmentsPerPatient;
 
 @Repository
 @Transactional
@@ -30,7 +31,7 @@ public class AppointmentDAO extends JdbcDaoSupport {
 								"appointment, patient, appointments_per_patient where appointments_per_patient.appointment_id = appointment.id) as s;";
 		*/
 		
-		String sql = "select * from appointment, (select appointment_id from appointments_per_patient) as pat_appt where pat_appt.appointment_id = appointment.id;";
+		String sql = "select * from appointment;";
 		   
 	   Object[] params = new Object[] {  };
 	   
@@ -99,5 +100,16 @@ public class AppointmentDAO extends JdbcDaoSupport {
 	      this.getJdbcTemplate().update(sql, params);  
 	      this.getJdbcTemplate().update(sql_two, params); 
 	    }
+	 
+	 public Appointment getPatientIdByAppt(long app_id) {
+			
+			String sql = "SELECT patient_id FROM appointment where id = ?;";
+			   
+		   Object[] params = new Object[] { app_id };
+		   
+		   Appointment pat_id = this.getJdbcTemplate().queryForObject(sql, params, new BeanPropertyRowMapper<Appointment>(Appointment.class));
+
+	       return pat_id;
+		}
 	   
 }

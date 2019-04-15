@@ -34,8 +34,11 @@ CREATE TABLE `appointment` (
   `purpose` text,
   `attendance` tinyint(4) DEFAULT NULL,
   `diagnostics` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `patient_id` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `pat_id_idx` (`id`,`patient_id`),
+  KEY `pat_id_idx1` (`patient_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,27 +47,9 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES (1,'2019-04-01',9,1,NULL,'descriptiopn',NULL,0,''),(2,'2019-03-20',10,2,NULL,'description',NULL,NULL,NULL),(3,'2019-02-20',9,2,NULL,'description',NULL,NULL,NULL),(5,'2019-02-20',10,1,NULL,'des',NULL,NULL,NULL),(6,'2019-03-30',11,1,NULL,'test','follow up',NULL,NULL);
+INSERT INTO `appointment` VALUES (1,'2019-04-15',9,1,NULL,'descriptiopn',NULL,0,'',0),(2,'2019-03-20',10,2,NULL,'description',NULL,NULL,NULL,NULL),(3,'2019-02-20',9,2,NULL,'description',NULL,NULL,NULL,NULL),(5,'2019-02-20',10,1,NULL,'des',NULL,NULL,NULL,NULL),(6,'2019-03-30',11,1,NULL,'test','follow up',NULL,NULL,NULL),(20,'2019-04-15',11,1,'Jo','test','follow up',0,'very bad',0);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `capstone`.`appointment_AFTER_INSERT` AFTER INSERT ON `appointment` FOR EACH ROW
-BEGIN
-	insert appointments_per_patient (patient_id, appointment_id) values(0, (select max(id) from appointment));
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `appointments_per_patient`
@@ -74,16 +59,11 @@ DROP TABLE IF EXISTS `appointments_per_patient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appointments_per_patient` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_id` int(11) DEFAULT NULL,
-  `appointment_id` int(11) DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
   `appoiment_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `patient_app_idx` (`appointment_id`),
-  KEY `patient_id_idx` (`patient_id`),
-  CONSTRAINT `patient_app` FOREIGN KEY (`appointment_id`) REFERENCES `appointment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `patient_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +72,6 @@ CREATE TABLE `appointments_per_patient` (
 
 LOCK TABLES `appointments_per_patient` WRITE;
 /*!40000 ALTER TABLE `appointments_per_patient` DISABLE KEYS */;
-INSERT INTO `appointments_per_patient` VALUES (1,1,1,0),(6,0,5,0),(8,1,6,0);
 /*!40000 ALTER TABLE `appointments_per_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -603,4 +582,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-08 10:05:15
+-- Dump completed on 2019-04-15 11:19:55

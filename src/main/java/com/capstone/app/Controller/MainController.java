@@ -91,7 +91,8 @@ public class MainController {
     	List<Integer> ages = new ArrayList<Integer>(); 
     		
     	for(Appointment appt : appo){
-    		pats.add(patientDAO.getPatientByID( Long.toString(apptPerPatDAO.getPatientIdByApptId( appt.getId()).getPatientId()) ));
+    		//Getting all patients that have appts for the day
+    		pats.add(patientDAO.getPatientByID(Integer.toString(apps.getPatientIdByAppt(appt.getId()).getPatient_id())));
     	}
     	    		
     	for(Patient pat : pats) {
