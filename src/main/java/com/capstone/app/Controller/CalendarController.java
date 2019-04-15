@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -85,7 +86,11 @@ public class CalendarController {
     @RequestMapping(value="/calendar/add_event", method=RequestMethod.GET) 
     public String add_event(Model model) {
         Appointment app = new Appointment();
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    	LocalDate localDate = LocalDate.now();    	
+    	
         model.addAttribute("appointment",app);
+        model.addAttribute("date", localDate);
         return "calendar/add :: add_event";
     }
     
