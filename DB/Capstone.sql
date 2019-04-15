@@ -359,3 +359,6 @@ DEFAULT CHARACTER SET = utf8;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+INSERT INTO `positions` VALUES (1,'nurse'),(2,'admin'),(3,'doctor');
+INSERT INTO `office` VALUES (1,'Allstar Aurora','Aurora');
+INSERT INTO `users` VALUES (2,'jPerez_16','$2a$04$m0as9WAXlo1Qx/aIRdlHPunHYlu6SMllt78B9fz5k6WptdLvQQgxy','Jovanny Perez',1,1),(3,'ewagner04','$2a$04$md2CbGvqtKtTB0ahNLKMgeet2VPy8EwBpWkW7T1b1g1VRdyRkI1hi','Eric Wagner',1,1);
