@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.DAO.AppointmentDAO;
-import com.capstone.app.DAO.AppointmetsPerPatientDAO;
 import com.capstone.app.DAO.ConditionsDAO;
 import com.capstone.app.DAO.EmergencyContactDAO;
 import com.capstone.app.DAO.InsuranceDAO;
@@ -40,8 +39,6 @@ public class PatientController {
 	@Autowired
 	AppointmentDAO apps;
 	
-	@Autowired
-	AppointmetsPerPatientDAO apptPerPatDAO;
 	
 	@Autowired
 	EmergencyContactDAO emerContcDAO;

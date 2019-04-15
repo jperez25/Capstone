@@ -112,409 +112,248 @@ CREATE TABLE `doctor` (
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `doctor`
---
 
-LOCK TABLES `doctor` WRITE;
-/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `emergency_contacts`
---
-
-DROP TABLE IF EXISTS `emergency_contacts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `emergency_contacts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_id` int(11) NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `relationship` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
-  `mobile` varchar(45) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`patient`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`patient` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  `weight` VARCHAR(45) NULL DEFAULT NULL,
+  `height` VARCHAR(45) NULL DEFAULT NULL,
+  `gender` TINYINT(4) NULL DEFAULT NULL,
+  `eye_colour` INT(11) NULL DEFAULT NULL,
+  `ssn` VARCHAR(45) NULL DEFAULT NULL,
+  `DOB` DATE NULL DEFAULT NULL,
+  `phone_number` VARCHAR(13) NULL DEFAULT NULL,
+  `insurance` INT(11) NULL DEFAULT '0',
+  `address` VARCHAR(200) NULL DEFAULT NULL,
+  `marital_status` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `pat_id_idx` (`patient_id`),
-  CONSTRAINT `patient_id_from_emergency_contacts` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `eye_idx` (`eye_colour` ASC),
+  INDEX `insurance_idx` (`insurance` ASC),
+  INDEX `marital_status_idx` (`marital_status` ASC),
+  CONSTRAINT `eye`
+    FOREIGN KEY (`eye_colour`)
+    REFERENCES `capstone`.`eye` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `insurance`
+    FOREIGN KEY (`insurance`)
+    REFERENCES `capstone`.`insurance` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `marital_status`
+    FOREIGN KEY (`marital_status`)
+    REFERENCES `capstone`.`marital_status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `emergency_contacts`
---
 
-LOCK TABLES `emergency_contacts` WRITE;
-/*!40000 ALTER TABLE `emergency_contacts` DISABLE KEYS */;
-INSERT INTO `emergency_contacts` VALUES (1,1,'John Smith','Brother','1996 Fake Street','6304059067');
-/*!40000 ALTER TABLE `emergency_contacts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `event`
---
-
-DROP TABLE IF EXISTS `event`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `event` (
-  `id` bigint(20) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `end` datetime DEFAULT NULL,
-  `start` datetime DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `event`
---
-
-LOCK TABLES `event` WRITE;
-/*!40000 ALTER TABLE `event` DISABLE KEYS */;
-/*!40000 ALTER TABLE `event` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `eye`
---
-
-DROP TABLE IF EXISTS `eye`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eye` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `color` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `eye`
---
-
-LOCK TABLES `eye` WRITE;
-/*!40000 ALTER TABLE `eye` DISABLE KEYS */;
-INSERT INTO `eye` VALUES (1,'blue'),(2,'brown'),(3,'green');
-/*!40000 ALTER TABLE `eye` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hibernate_sequence`
---
-
-DROP TABLE IF EXISTS `hibernate_sequence`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hibernate_sequence`
---
-
-LOCK TABLES `hibernate_sequence` WRITE;
-/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (1),(1),(1),(1),(1),(1),(1),(1);
-/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `insurance`
---
-
-DROP TABLE IF EXISTS `insurance`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `insurance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insurance_name` varchar(45) DEFAULT NULL,
-  `group_number` varchar(45) DEFAULT NULL,
-  `pcp` varchar(100) DEFAULT NULL,
-  `effective_date` date DEFAULT NULL,
-  `insurance_number` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `insurance`
---
-
-LOCK TABLES `insurance` WRITE;
-/*!40000 ALTER TABLE `insurance` DISABLE KEYS */;
-INSERT INTO `insurance` VALUES (0,'test','tst7357','test',NULL,'1234567890');
-/*!40000 ALTER TABLE `insurance` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `marital_status`
---
-
-DROP TABLE IF EXISTS `marital_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `marital_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `marital_status` varchar(45) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`emergency_contacts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`emergency_contacts` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `patient_id` INT(11) NOT NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  `relationship` VARCHAR(45) NULL DEFAULT NULL,
+  `address` VARCHAR(45) NULL DEFAULT NULL,
+  `mobile` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `pat_id_idx` (`patient_id` ASC),
+  CONSTRAINT `patient_id_from_emergency_contacts`
+    FOREIGN KEY (`patient_id`)
+    REFERENCES `capstone`.`patient` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `marital_status`
---
 
-LOCK TABLES `marital_status` WRITE;
-/*!40000 ALTER TABLE `marital_status` DISABLE KEYS */;
-INSERT INTO `marital_status` VALUES (1,'single'),(2,'married'),(3,'widowed'),(4,'divorced');
-/*!40000 ALTER TABLE `marital_status` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `capstone`.`event`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`event` (
+  `id` BIGINT(20) NOT NULL,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
+  `end` DATETIME NULL DEFAULT NULL,
+  `start` DATETIME NULL DEFAULT NULL,
+  `title` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Table structure for table `medication`
---
 
-DROP TABLE IF EXISTS `medication`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `medication` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `medication` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `capstone`.`hibernate_sequence`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`hibernate_sequence` (
+  `next_val` BIGINT(20) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `medication`
---
 
-LOCK TABLES `medication` WRITE;
-/*!40000 ALTER TABLE `medication` DISABLE KEYS */;
-/*!40000 ALTER TABLE `medication` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `capstone`.`medication`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`medication` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `medication` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Table structure for table `office`
---
 
-DROP TABLE IF EXISTS `office`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `office` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `location` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `capstone`.`office`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`office` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `location` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `office`
---
 
-LOCK TABLES `office` WRITE;
-/*!40000 ALTER TABLE `office` DISABLE KEYS */;
-INSERT INTO `office` VALUES (1,'Allstar Aurora','Aurora');
-/*!40000 ALTER TABLE `office` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `patient`
---
-
-DROP TABLE IF EXISTS `patient`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `patient` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `weight` varchar(45) DEFAULT NULL,
-  `height` varchar(45) DEFAULT NULL,
-  `gender` tinyint(4) DEFAULT NULL,
-  `eye_colour` int(11) DEFAULT NULL,
-  `ssn` varchar(45) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
-  `phone_number` varchar(13) DEFAULT NULL,
-  `insurance` int(11) DEFAULT '0',
-  `address` varchar(200) DEFAULT NULL,
-  `marital_status` int(11) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`patient_medication`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`patient_medication` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `patient_id` INT(11) NULL DEFAULT NULL,
+  `medication_id` INT(11) NULL DEFAULT NULL,
+  `current` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `eye_idx` (`eye_colour`),
-  KEY `insurance_idx` (`insurance`),
-  KEY `marital_status_idx` (`marital_status`),
-  CONSTRAINT `eye` FOREIGN KEY (`eye_colour`) REFERENCES `eye` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `insurance` FOREIGN KEY (`insurance`) REFERENCES `insurance` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `marital_status` FOREIGN KEY (`marital_status`) REFERENCES `marital_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `pat_id_idx` (`patient_id` ASC),
+  INDEX `med_id_idx` (`medication_id` ASC),
+  CONSTRAINT `med_id`
+    FOREIGN KEY (`medication_id`)
+    REFERENCES `capstone`.`medication` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `pat_id`
+    FOREIGN KEY (`patient_id`)
+    REFERENCES `capstone`.`patient` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `patient`
---
 
-LOCK TABLES `patient` WRITE;
-/*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (0,'set','set','0','0',0,1,'111111111','1970-01-01','1113334444',0,NULL,1),(1,'Jovanny','Perez','170','68',0,1,'111224444','1996-08-24','3312289037',0,NULL,1),(3,'Jovanny2','Perez','170.0','68.0',0,1,'123456789','1996-08-24','3312289037',0,NULL,1);
-/*!40000 ALTER TABLE `patient` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `patient_medication`
---
-
-DROP TABLE IF EXISTS `patient_medication`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `patient_medication` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_id` int(11) DEFAULT NULL,
-  `medication_id` int(11) DEFAULT NULL,
-  `current` tinyint(4) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`patients_medical_history`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`patients_medical_history` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `patient_id` INT(11) NULL DEFAULT NULL,
+  `condition` INT(11) NULL DEFAULT NULL,
+  `current` INT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `pat_id_idx` (`patient_id`),
-  KEY `med_id_idx` (`medication_id`),
-  CONSTRAINT `med_id` FOREIGN KEY (`medication_id`) REFERENCES `medication` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pat_id` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `patient_idx` (`patient_id` ASC),
+  INDEX `conditon_idx` (`condition` ASC),
+  CONSTRAINT `conditon`
+    FOREIGN KEY (`condition`)
+    REFERENCES `capstone`.`conditions` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `patient`
+    FOREIGN KEY (`patient_id`)
+    REFERENCES `capstone`.`patient` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `patient_medication`
---
 
-LOCK TABLES `patient_medication` WRITE;
-/*!40000 ALTER TABLE `patient_medication` DISABLE KEYS */;
-/*!40000 ALTER TABLE `patient_medication` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `capstone`.`positions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`positions` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `position` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8;
 
---
--- Table structure for table `patients_medical_history`
---
 
-DROP TABLE IF EXISTS `patients_medical_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `patients_medical_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_id` int(11) DEFAULT NULL,
-  `condition` int(11) DEFAULT NULL,
-  `current` int(1) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`role`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`role` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `role_name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `patient_idx` (`patient_id`),
-  KEY `conditon_idx` (`condition`),
-  CONSTRAINT `conditon` FOREIGN KEY (`condition`) REFERENCES `conditions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `patient` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `patients_medical_history`
---
 
-LOCK TABLES `patients_medical_history` WRITE;
-/*!40000 ALTER TABLE `patients_medical_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `patients_medical_history` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `capstone`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`user` (
+  `id` INT(11) NOT NULL,
+  `level` INT(11) NOT NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `office` VARCHAR(255) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `position` VARCHAR(255) NULL DEFAULT NULL,
+  `user_id` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Table structure for table `positions`
---
 
-DROP TABLE IF EXISTS `positions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `positions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `position` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `positions`
---
-
-LOCK TABLES `positions` WRITE;
-/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
-INSERT INTO `positions` VALUES (1,'nurse'),(2,'admin'),(3,'doctor');
-/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(45) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `userId` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(124) NOT NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  `office` INT(11) NULL DEFAULT NULL,
+  `position` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `office_idx` (`office` ASC),
+  INDEX `position_idx` (`position` ASC),
+  CONSTRAINT `office`
+    FOREIGN KEY (`office`)
+    REFERENCES `capstone`.`office` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `position`
+    FOREIGN KEY (`position`)
+    REFERENCES `capstone`.`positions` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `role`
---
 
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'ROLE_USER'),(2,'ROLE_ADMIN');
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `office` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `position` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user_role`
---
-
-DROP TABLE IF EXISTS `user_role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `capstone`.`user_role`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `capstone`.`user_role` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NULL DEFAULT NULL,
+  `role_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`),
   KEY `role_id_idx` (`role_id`),
