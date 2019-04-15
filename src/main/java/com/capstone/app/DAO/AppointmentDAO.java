@@ -1,5 +1,6 @@
 package com.capstone.app.DAO;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.Model.Appointment;
+import com.capstone.app.Model.AppointmentsPerPatient;
 
 @Repository
 @Transactional
@@ -30,14 +32,14 @@ public class AppointmentDAO extends JdbcDaoSupport {
 								"appointment, patient, appointments_per_patient where appointments_per_patient.appointment_id = appointment.id) as s;";
 		*/
 		
-		String sql = "select * from appointment, (select appointment_id from appointments_per_patient) as pat_appt where pat_appt.appointment_id = appointment.id;";
+		String sql = "select * from appointment;";
 		   
 	   Object[] params = new Object[] {  };
 	   
 	   List<Appointment> apps = this.getJdbcTemplate().query(sql, params, new BeanPropertyRowMapper<Appointment>(Appointment.class));
 
        return apps;
-	}
+    }
 	
 	public List<Appointment> getAllTodaysAppointments() {
 		
@@ -51,9 +53,7 @@ public class AppointmentDAO extends JdbcDaoSupport {
 	}
 	
 	public List<Appointment> getAllApoimentsByPatient(int id) {
-		String sql = "select * from appointment,"+
-							" (select * from appointments_per_patient where appointments_per_patient.patient_id = ?)"+
-							" as app where app.appointment_id = appointment.id;";
+		String sql = "select * from appointment";
 		   
 	   Object[] params = new Object[] { id };
 	   
@@ -76,9 +76,9 @@ public class AppointmentDAO extends JdbcDaoSupport {
 	public void storeAppointment(String date, int start, String duration, String patient, String doctor) {
 	    
 	    System.out.println(patient);
-	    String sql = "INSERT INTO appointment (date, hour, duration, description, attendance, diagnostics)"
-	                  + " VALUES (?, ?, ?, ?, ?, ?)";
-	    Object[] params = new Object[] {date, start, duration,patient+doctor,0, ""};
+	    String sql = "INSERT INTO appointment (date, hour, duration, doctor, description, purpose, attendance, diagnostics)"
+	                  + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	    Object[] params = new Object[] {date, start, duration,doctor, patient+doctor,"", 0, ""};
 	    this.getJdbcTemplate().update(sql, params);  
     
     }
@@ -93,11 +93,20 @@ public class AppointmentDAO extends JdbcDaoSupport {
 	
 	 public void deleteAppointment(int id) {
 	        
-	      String sql = "DELETE FROM appointments_per_patient WHERE appointment_id = ?";
 	      String sql_two = "DELETE FROM appointment WHERE id = ?";
-	      Object[] params = new Object[] {id};
-	      this.getJdbcTemplate().update(sql, params);  
+	      Object[] params = new Object[] {id};  
 	      this.getJdbcTemplate().update(sql_two, params); 
 	    }
+	 
+	 public Appointment getPatientIdByAppt(long app_id) {
+			
+			String sql = "SELECT patient_id FROM appointment where id = ?;";
+			   
+		   Object[] params = new Object[] { app_id };
+		   
+		   Appointment pat_id = this.getJdbcTemplate().queryForObject(sql, params, new BeanPropertyRowMapper<Appointment>(Appointment.class));
+
+	       return pat_id;
+		}
 	   
 }
