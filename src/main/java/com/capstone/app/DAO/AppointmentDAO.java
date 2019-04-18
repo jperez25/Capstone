@@ -75,9 +75,9 @@ public class AppointmentDAO extends JdbcDaoSupport {
 	public void storeAppointment(String date, int start, String duration, String patient, String doctor) {
 	    
 	    System.out.println(patient);
-	    String sql = "INSERT INTO appointment (date, hour, duration, doctor, description, purpose, attendance, diagnostics)"
-	                  + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	    Object[] params = new Object[] {date, start, duration,doctor, patient+doctor,"", 0, ""};
+	    String sql = "INSERT INTO appointment (date, hour, duration, doctor, description, purpose, attendance, diagnostics, patient_id)"
+	                  + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    Object[] params = new Object[] {date, start, duration,doctor, patient+doctor,"", 0, "", 0};
 	    this.getJdbcTemplate().update(sql, params);  
     
     }
