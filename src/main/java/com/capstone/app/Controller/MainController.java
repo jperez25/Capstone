@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.DAO.AppointmentDAO;
-import com.capstone.app.DAO.AppointmetsPerPatientDAO;
 import com.capstone.app.DAO.EmergencyContactDAO;
 import com.capstone.app.DAO.InsuranceDAO;
 import com.capstone.app.DAO.OfficeDAO;
@@ -44,8 +43,6 @@ public class MainController {
 	@Autowired
 	AppointmentDAO apps;
 	
-	@Autowired
-	AppointmetsPerPatientDAO apptPerPatDAO;
 	
 	@Autowired
 	EmergencyContactDAO emerContcDAO;
@@ -91,7 +88,8 @@ public class MainController {
     	List<Integer> ages = new ArrayList<Integer>(); 
     		
     	for(Appointment appt : appo){
-    		pats.add(patientDAO.getPatientByID( Long.toString(apptPerPatDAO.getPatientIdByApptId( appt.getId()).getPatientId()) ));
+    		//Getting all patients that have appts for the day
+    		pats.add(patientDAO.getPatientByID(Integer.toString(apps.getPatientIdByAppt(appt.getId()).getPatient_id())));
     	}
     	    		
     	for(Patient pat : pats) {
@@ -163,6 +161,16 @@ public class MainController {
     	model.addAttribute("patients", patientDAO.getPatientsByName(last_name) );
     	
         return "patient\\patients :: patients";
+    }
+
+    @RequestMapping(value = "/get_patients_by_last_name_modal", method = RequestMethod.GET)
+    public String showPatientsListModal(Model model, @RequestParam String last_name) {
+    	
+    	model.addAttribute("patients", patientDAO.getPatientsByName(last_name) );
+    	
+    	System.out.println(patientDAO.getPatientsByName(last_name).size());
+    	
+        return "calendar\\add :: datalist";
     }
     
     @RequestMapping(value = "/get_patient", method = RequestMethod.GET)

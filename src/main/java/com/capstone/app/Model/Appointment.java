@@ -22,11 +22,12 @@ public class Appointment {
     private String purpose;
     private String attendance;
     private String diagnostics;
+    private int patient_id;
     
     public Appointment() {}
     
 	public Appointment(String date, int hour, int duration, String doctor, String description, String purpose,
-			String attendance, String diagnostics) {
+			String attendance, String diagnostics, int pat_id) {
 		super();
 		this.date = date;
 		this.hour = hour;
@@ -36,6 +37,7 @@ public class Appointment {
 		this.purpose = purpose;
 		this.attendance = attendance;
 		this.diagnostics = diagnostics;
+		this.patient_id = pat_id;
 	}
 
 	public Long getId() {
@@ -108,6 +110,14 @@ public class Appointment {
 
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
+	}
+
+	public int getPatient_id() {
+		return patient_id;
+	}
+
+	public void setPatient_id(int patient_id) {
+		this.patient_id = patient_id;
 	}
     
     

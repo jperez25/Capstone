@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.app.DAO.AppointmentDAO;
-import com.capstone.app.DAO.AppointmetsPerPatientDAO;
 import com.capstone.app.DAO.ConditionsDAO;
 import com.capstone.app.DAO.EmergencyContactDAO;
 import com.capstone.app.DAO.InsuranceDAO;
@@ -41,7 +40,8 @@ public class PatientController {
 	AppointmentDAO apps;
 	
 	@Autowired
-	AppointmetsPerPatientDAO apptPerPatDAO;
+	ConditionsDAO conditionsDAO;
+	
 	
 	@Autowired
 	EmergencyContactDAO emerContcDAO;
@@ -72,16 +72,16 @@ public class PatientController {
 		
 		//System.out.println(conditions.getConditionsList().get(0).getName());
 		
-		/*for (Conditions condition : conditions.getConditionsList()) {
+		for (Conditions condition : conditions.getConditionsList()) {
 			if (!condition.getName().equals(null) && !condition.getType().equals(null) && condition.getDescription().equals(null)) {
 				conditionsDAO.newCondition(condition);
 			} else {
 				System.out.println("incomplete condition");
 			}
-		}*/
+		}
 		
-		//insuranceDAO.newInsurance(insurance);
-		//patientDAO.newPatient(pat);
+		insuranceDAO.newInsurance(insurance);
+		patientDAO.newPatient(pat);
 		
 		
 		
