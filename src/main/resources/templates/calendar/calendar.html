@@ -35,9 +35,10 @@
 					get_app_by_id(calEvent.description);
 					$('#modalBox').modal('toggle');
 					$('#modalBox').modal('show');
+					$('#modalBox').modal('hide');
 					// change the border color just for fun
 					
-					$(this).css('border-color', 'red');
+					//$(this).css('border-color', 'red');
 				},
 				dayClick: function(date, jsEvent, view) {
 
@@ -48,7 +49,7 @@
 					//alert('Current view: ' + view.name);
 
 					// change the day's background color just for fun
-					$(this).css('background-color', 'red');
+					//$(this).css('background-color', 'red');
 
 					modalAdd();
 
