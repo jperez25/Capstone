@@ -4,7 +4,7 @@
 
   <div th:insert = ":: emergency_contact" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
   </div>
-  
+
   <div th:insert = ":: insurance_info" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3" >
   </div>
 
@@ -56,7 +56,7 @@
           </tr>
 
           <tr>
-            <td>Eye Colour:</td>            
+            <td>Eye Colour:</td>
             <td th:if="${patient.eye_colour == 1}">Blue</td>
           </tr>
 
@@ -113,12 +113,12 @@
                       <td>Relationship:</td>
                       <td th:text = "${contact.relationship}"></td>
                     </tr>
-  
+
                     <tr>
                       <td>Address:</td>
                       <td th:text = "${contact.address}"></td>
                     </tr>
-          
+
                     <tr>
                       <td>Mobile:</td>
                       <td th:text = "${contact.mobile}"></td>

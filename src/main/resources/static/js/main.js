@@ -30,7 +30,21 @@ function get_Patients(last_name) {
 
 function get_patient(patient_id) {
     console.log(patient_id);
-    
+
+    var x = document.getElementById("patient_info");
+    var y = document.getElementById("footer_id")
+    var z = document.getElementById("welcome_page")
+    if (x.style.display === "none") {
+            x.style.display = "flex";
+    }
+    if(y.style.display === "none"){
+        y.style.display = "flex";
+    }
+    if(z.style.display==="flex"){
+        z.style.display = "none";
+    }
+
+
     $.ajax({
         url: "/get_patient",
         data: {

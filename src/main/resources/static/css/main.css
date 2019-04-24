@@ -53,6 +53,8 @@ a:hover {
   color: #57b846;
 }
 
+
+
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
@@ -668,4 +670,36 @@ body,html,.row-offcanvas {
 
 #index-nav {
   display: none;
+}
+
+#welcome_page{
+  margin: auto;margin-top: 30%;
+  width: 34%;
+  padding: 10px;
+}
+
+#welcomeHeader{
+  margin-left: 1%;
+}
+
+.btn-outline-danger a{
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover a{
+  color: #fff;
+}
+
+input[type="radio"] {
+  margin-right: 1px;
+  margin-left: 15px;
+}
+
+.btn-success{
+  margin-bottom: 1%;
+  margin-left: 1%;
+}
+
+#panel-style{
+  margin-left: 2%;
 }
