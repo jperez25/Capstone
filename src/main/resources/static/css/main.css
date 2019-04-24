@@ -666,6 +666,10 @@ body,html,.row-offcanvas {
     position: relative;
     top: 10;
   }
+
+  #welcome_page {
+    display: none !important;
+  }
 }
 
 #index-nav {
